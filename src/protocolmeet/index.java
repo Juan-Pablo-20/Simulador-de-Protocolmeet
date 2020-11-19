@@ -16,18 +16,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Juan Pablo Ballesteros Obando Software diseñado para el registro de
- * personas que asisten a eucaristias a las parroquias de Zipaquirá según la
+ * personas que asisten a eucaristias a las parroquias de Colombia según la
  * hora y la fecha que dessen, ofreciendo una encuesta para conocer el estado de
  * salud de las personas
  */
 
 /*
-1. Revisar lo del ingreso de personas en quiero asistir cuando la cedula es incorrecta
-11. Arreglar el buscador para que lea toda la cadena de caracteres
 2. Calendario en qAsistir con registro de fecha y hora
 9. Ventana para encuesta despues de registrar una persona y en qAsistir
 4. Boton de asistencia cuadrarlo con reservar.java
@@ -38,7 +37,7 @@ import javax.swing.JLabel;
 10. Opción de eliminar a una persona con la contraseña de una persona
 11. Agregar una opcion de ya no voy a asistir en qAsistir
 12. Al final mejorar el diseño de la interfaz gráfica
-*/
+ */
 public class index extends javax.swing.JFrame {
 
     static Dao<persona, Long> base;
@@ -69,19 +68,14 @@ public class index extends javax.swing.JFrame {
         combo.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 13));
         jPanel3.setLayout(null);
         try {
-            if (base2.countOf() != 0) {
-                combo.removeAllItems();
-                for (parroquia pa : base2.queryForAll()) {
-                    combo.addItem(pa.getNombreP());
-                    System.out.println("EL NIT ES " + pa.getNit());
-                    System.out.println("LA CONTRASEÑA " + pa.getPass());
-                }
-                jPanel3.add(combo);
-            } else {
-                JLabel jl = new JLabel();
-                jl.setBounds(30, 17, 287, 35);
-                jl.setText("No hay parroquias registradas");
+            combo.removeAllItems();
+            for (parroquia pa : base2.queryForAll()) {
+                combo.addItem(pa.getNombreP());
+                System.out.println("EL NIT ES " + pa.getNit());
+                System.out.println("LA CONTRASEÑA " + pa.getPass());
             }
+            jPanel3.add(combo);
+
         } catch (SQLException ex) {
             Logger.getLogger(index.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -89,17 +83,25 @@ public class index extends javax.swing.JFrame {
 
     private void mostrarPanel() {
         try {
-            int i = 0;
-            for (parroquia pr : base2.queryForAll()) {
-                Panel pa = new Panel();
-                if (i < 4) {
-                    pa.paneles(i, j, pr.getNombreP(), pr.getDirecc(), pr.getDiocesis(), pr.getParroco());
-                    listen();
-                    Panel.nombres[i] = pr.getNombreP();
+            if (base2.countOf() != 0) {
+                int i = 0;
+                for (parroquia pr : base2.queryForAll()) {
+                    Panel pa = new Panel();
+                    if (i < 4) {
+                        pa.paneles(i, j, pr.getNombreP(), pr.getDirecc(), pr.getDiocesis(), pr.getParroco());
+                        listen();
+                        Panel.nombres[i] = pr.getNombreP();
+                    }
+                    j += 330;
+                    i++;
+                    panelGrande.add(Panel.panel);
                 }
-                j += 330;
-                i++;
-                panelGrande.add(Panel.panel);
+            } else {
+                JLabel adLabel = new JLabel();
+                adLabel.setBounds(0, 40, 500, 50);
+                adLabel.setText("¡No hay parroquias registradas actualmente!");
+                adLabel.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
+                panelGrande.add(adLabel);
             }
         } catch (SQLException ex) {
             Logger.getLogger(index.class.getName()).log(Level.SEVERE, null, ex);
@@ -108,7 +110,7 @@ public class index extends javax.swing.JFrame {
     }
 
     public void listen() {
-        
+
         ActionListener accionBtn = (ActionEvent evento) -> { //esta es una forma actual (2020) de escribir ActionListener, sin su metodo ActionPerformed
             evento.setSource(Panel.botones[0]); //esto solo lo pongo aca para que me deje funcionar todos los botones de cada panel y no solo uno
             if (evento.getSource() == Panel.botones[0]) {
@@ -169,6 +171,7 @@ public class index extends javax.swing.JFrame {
     public void comboListen() {
         ItemListener itm = new ItemListener() {
             Panel pb = new Panel();
+
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if (visible == true) {
@@ -209,26 +212,43 @@ public class index extends javax.swing.JFrame {
             @Override
             public void keyReleased(KeyEvent e) {
                 buscado = true;//para definir que si se uso la caja de texto
+                int k = 0;
+                int lon = 0;
                 if (!entrada.getText().equals("")) {
                     panelGrande.removeAll();
                     panelGrande.setVisible(false);
-                    String entr = entrada.getText().toLowerCase();
-                    try {
-                        for (parroquia b : base2.queryForAll()) {
-                            String busq = b.getNombreP().toLowerCase();
-                            if (busq.equals(entr)) {
-                                nombPq3 = b.getNombreP();//esta es la posicion correcta para esta variable
-                                panelGrande.setVisible(true);
-                                Panel p = new Panel();
-                                p.paneles(0, 0, b.getNombreP(), b.getDirecc(), b.getDiocesis(), b.getParroco());
-                                panelGrande.add(Panel.panel);
-                                listen();
+                    k = 0;
+                    lon = 0;
+                    lon = entrada.getText().length();
+                    String en = entrada.getText();
+                    String[] st = new String[lon];
+
+                    for (int i = 0; i < lon; i++) {
+                        k = 0;
+                        st[i] = en.substring(0, lon);
+                        try {
+                            for (parroquia b : base2.queryForAll()) {
+                                try {
+                                    if (b.getNombreP().substring(0, lon).equalsIgnoreCase(st[i]) || b.getCiudad().substring(0, lon).equalsIgnoreCase(st[i])) {
+                                        nombPq3 = b.getNombreP();
+                                        panelGrande.setVisible(true);
+                                        Panel p = new Panel();
+                                        p.paneles(0, k, b.getNombreP(), b.getDirecc(), b.getDiocesis(), b.getParroco());
+                                        panelGrande.add(Panel.panel);
+                                        listen();
+                                        k += 330;
+                                    }
+                                } catch (Exception exc) {
+                                }
                             }
+                        } catch (SQLException ex) {
+                            Logger.getLogger(index.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                    } catch (SQLException ex) {
-                        Logger.getLogger(index.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
+                    panelGrande.removeAll();
+                    panelGrande.setVisible(false);
+                    panelGrande.setVisible(true);
                     mostrarPanel();
                 }
             }
@@ -405,7 +425,7 @@ public class index extends javax.swing.JFrame {
         ConnectionSource conexion = new JdbcConnectionSource(archivo);
         base = DaoManager.createDao(conexion, persona.class);
 
-        String archivoDos = "jdbc:h2:./baseParroquias";
+        String archivoDos = "jdbc:h2:./baseParroquia2";
         ConnectionSource conexion2 = new JdbcConnectionSource(archivoDos);
         base2 = DaoManager.createDao(conexion2, parroquia.class);
 

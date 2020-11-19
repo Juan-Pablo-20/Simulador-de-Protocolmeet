@@ -26,6 +26,7 @@ public class reservar extends javax.swing.JFrame {
     static String dio;
     static String namepa;
     static String namepo;
+    static String ciudPa;
     static long telf;
     static String cor;
     static String dir;
@@ -93,10 +94,10 @@ public class reservar extends javax.swing.JFrame {
                         editParroquia();
                     } else if (index.titleBtn.equals("Quiero asistir")) {
                         ingresoPersona();
-                    } else if(index.titleBtn.equals("Asistencia")){
-                        
-                    } else if(index.titleBtn.equals("Ver mis reservas")){
-                        
+                    } else if (index.titleBtn.equals("Asistencia")) {
+
+                    } else if (index.titleBtn.equals("Ver mis reservas")) {
+
                     }
                 } else if (e.getSource() == boton1) {
                     index in = new index();
@@ -113,7 +114,7 @@ public class reservar extends javax.swing.JFrame {
                         registroPer rk = new registroPer();
                         rk.setVisible(true);
                         hide();
-                    } else if(index.titleBtn.equals("Asistencia")){
+                    } else if (index.titleBtn.equals("Asistencia")) {
                         //aqui va el boton de soy colaborador
                     }
                 }
@@ -132,21 +133,21 @@ public class reservar extends javax.swing.JFrame {
                 persona per = base.queryForId(cedu);
                 nomb = per.getNombre();
                 pasw = per.getPassw();
+                if (pasw.equals(field2.getText())) {
+                    ingreso = true;
+                } else {
+                    ingreso = false;
+                    jlabel2.setForeground(Color.red);
+                    JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+                }
+                if (ingreso == true) {
+                    qAsistir qa = new qAsistir();
+                    qa.setVisible(true);
+                    jlabel2.setForeground(Color.black);
+                    hide();
+                }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "La persona con cedula " + cedu + " no está registrada");
-            }
-            if (pasw.equals(field2.getText())) {
-                ingreso = true;
-            } else {
-                ingreso = false;
-                jlabel2.setForeground(Color.red);
-                JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
-            }
-            if(ingreso == true){
-                qAsistir qa = new qAsistir();
-                qa.setVisible(true);
-                jlabel2.setForeground(Color.black);
-                hide();
             }
         } catch (Exception ex) {
             Logger.getLogger(reservar.class.getName()).log(Level.SEVERE, null, ex);
@@ -161,6 +162,7 @@ public class reservar extends javax.swing.JFrame {
             dio = pq.getDiocesis();
             namepa = pq.getNombreP();
             namepo = pq.getParroco();
+            ciudPa = pq.getCiudad();
             telf = pq.getTelefono();
             cor = pq.getCorreo();
             dir = pq.getDirecc();

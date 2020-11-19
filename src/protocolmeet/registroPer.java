@@ -147,7 +147,7 @@ public class registroPer extends javax.swing.JFrame {
     }//GEN-LAST:event_ciuTextActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY"); //para darle formato simple a la fecha
         GregorianCalendar cal = new GregorianCalendar();
         dateR = cal.getTime();
         

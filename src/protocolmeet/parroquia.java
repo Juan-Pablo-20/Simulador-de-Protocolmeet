@@ -12,6 +12,8 @@ public class parroquia {
     @DatabaseField
     private String parroco;
     @DatabaseField
+    private String ciudad;
+    @DatabaseField
     private long telefono;
     @DatabaseField
     private String correo;
@@ -28,11 +30,12 @@ public class parroquia {
         //ES IMPORTANTE CREAR UN CONSTRUCTOR VACIO PARA QUE EL ARCHIVO DE LA BD FUNCIONE
     }
 
-    public parroquia(String Diocesis, String nombreP, String parroco, long telefono, 
+    public parroquia(String Diocesis, String nombreP, String parroco, String ciudad, long telefono, 
             String correo, String direcc, int capc, long nit, String pass) {
         this.Diocesis = Diocesis;
         this.nombreP = nombreP;
         this.parroco = parroco;
+        this.ciudad = ciudad;
         this.telefono = telefono;
         this.correo = correo;
         this.direcc = direcc;
@@ -63,6 +66,14 @@ public class parroquia {
 
     public void setParroco(String parroco) {
         this.parroco = parroco;
+    }
+    
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
     }
 
     public long getTelefono() {

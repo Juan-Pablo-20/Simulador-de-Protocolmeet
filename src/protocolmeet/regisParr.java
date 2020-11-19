@@ -11,6 +11,7 @@ public class regisParr extends javax.swing.JFrame {
     private String diss;
     private String nombre;
     private String parroco;
+    private String city;
     private long tel;
     private String mail;
     private String dirc;
@@ -34,7 +35,7 @@ public class regisParr extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         capText = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        dissText = new javax.swing.JTextField();
+        cityText = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         nacoText = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -51,6 +52,8 @@ public class regisParr extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         dircText = new javax.swing.JTextField();
         passText = new javax.swing.JPasswordField();
+        jLabel12 = new javax.swing.JLabel();
+        dissText1 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
 
         setTitle("Registro de nueva parroquia");
@@ -63,8 +66,8 @@ public class regisParr extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Diocesis");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 60, -1, -1));
+        jLabel2.setText("Ciudad");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, -1, -1));
 
         capText.setBackground(new java.awt.Color(204, 255, 255));
         getContentPane().add(capText, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 394, 373, -1));
@@ -74,13 +77,13 @@ public class regisParr extends javax.swing.JFrame {
         jLabel3.setText("Nombre de la parroquia");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 112, -1, -1));
 
-        dissText.setBackground(new java.awt.Color(204, 255, 255));
-        dissText.addActionListener(new java.awt.event.ActionListener() {
+        cityText.setBackground(new java.awt.Color(204, 255, 255));
+        cityText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dissTextActionPerformed(evt);
+                cityTextActionPerformed(evt);
             }
         });
-        getContentPane().add(dissText, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 82, 370, -1));
+        getContentPane().add(cityText, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 190, -1));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -158,6 +161,19 @@ public class regisParr extends javax.swing.JFrame {
         passText.setBackground(new java.awt.Color(204, 255, 255));
         getContentPane().add(passText, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 500, 370, -1));
 
+        jLabel12.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setText("Diocesis");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 60, -1, -1));
+
+        dissText1.setBackground(new java.awt.Color(204, 255, 255));
+        dissText1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dissText1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(dissText1, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 82, 170, -1));
+
         jLabel11.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/protocolmeet/fondo.jpg"))); // NOI18N
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 600));
@@ -165,9 +181,9 @@ public class regisParr extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void dissTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dissTextActionPerformed
+    private void cityTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_dissTextActionPerformed
+    }//GEN-LAST:event_cityTextActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.hide();
@@ -178,9 +194,10 @@ public class regisParr extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        diss = dissText.getText();
+        diss = cityText.getText();
         nombre = napaText.getText();
         parroco = nacoText.getText();
+        city = cityText.getText();
         tel = Long.parseLong(telText.getText());
         mail = corrText.getText();
         dirc = dircText.getText();
@@ -188,14 +205,15 @@ public class regisParr extends javax.swing.JFrame {
         nit = Long.parseLong(nitText.getText());
         pass = passText.getText();
         
-        parroquia p = new parroquia(diss, nombre, parroco, tel, mail, dirc, cap, nit, pass);
+        parroquia p = new parroquia(diss, nombre, parroco,city, tel, mail, dirc, cap, nit, pass);
         
         try {
             base2.create(p);
             JOptionPane.showMessageDialog(null, "Parroquia registrada exitosamente");
-            dissText.setText("");
+            dissText1.setText("");
             napaText.setText("");
             nacoText.setText("");
+            cityText.setText("");
             telText.setText("");
             corrText.setText("");
             dircText.setText("");
@@ -207,6 +225,10 @@ public class regisParr extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ups ocurrio un error");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void dissText1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dissText1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dissText1ActionPerformed
 
     public static void main(String args[]) {
 
@@ -238,14 +260,16 @@ public class regisParr extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField capText;
+    private javax.swing.JTextField cityText;
     private javax.swing.JTextField corrText;
     private javax.swing.JTextField dircText;
-    private javax.swing.JTextField dissText;
+    private javax.swing.JTextField dissText1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
