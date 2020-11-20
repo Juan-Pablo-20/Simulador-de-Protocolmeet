@@ -85,9 +85,9 @@ public class qAsistir extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        fechaC = new rojeru_san.componentes.RSDateChooser();
         horasCombo = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
+        fechaC = new rojeru_san.componentes.RSDateChooser();
         jLabel1 = new javax.swing.JLabel();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -125,9 +125,6 @@ public class qAsistir extends javax.swing.JFrame {
         jButton2.setText("Realizar encuesta covid ahora");
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 371, 239, 47));
 
-        fechaC.setColorDiaActual(new java.awt.Color(102, 255, 102));
-        getContentPane().add(fechaC, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 151, -1, -1));
-
         getContentPane().add(horasCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 225, 240, -1));
 
         jButton3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -138,6 +135,7 @@ public class qAsistir extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(386, 371, 159, 47));
+        getContentPane().add(fechaC, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/protocolmeet/fondo.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 470));
