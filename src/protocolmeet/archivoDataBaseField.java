@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class archivoDataBaseField {
     public static void main(String[] args) throws SQLException{
-        String archivo = "jdbc:h2:./personaBD";
+        String archivo = "jdbc:h2:./baseDatosPersona";
         
         ConnectionSource conexion = new JdbcConnectionSource(archivo);
         

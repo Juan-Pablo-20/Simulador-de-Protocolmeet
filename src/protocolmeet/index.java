@@ -27,6 +27,7 @@ import javax.swing.JOptionPane;
  */
 
 /*
+1. Corregir lo de las tildes en las barra de busqueda
 2. Calendario en qAsistir con registro de fecha y hora
 9. Ventana para encuesta despues de registrar una persona y en qAsistir
 4. Boton de asistencia cuadrarlo con reservar.java
@@ -421,7 +422,7 @@ public class index extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(index.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-        String archivo = "jdbc:h2:./personaBD";
+        String archivo = "jdbc:h2:./baseDatosPersona";
         ConnectionSource conexion = new JdbcConnectionSource(archivo);
         base = DaoManager.createDao(conexion, persona.class);
 

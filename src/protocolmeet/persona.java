@@ -29,13 +29,15 @@ public class persona {
     private String fechaR;
     @DatabaseField
     private String hora;
+    @DatabaseField
+    private boolean encuesta;
 
     public persona() {
     }
 
     public persona(long cedula, String nombre,String passw, long celular, String correo,
             String direccion, String ciudad, double temp, String fechaM,
-            String fechaR, String hora) {
+            String fechaR, String hora, boolean encuesta) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.passw = passw;
@@ -47,6 +49,7 @@ public class persona {
         this.fechaM = fechaM;
         this.fechaR = fechaR;
         this.hora = hora;
+        this.encuesta = encuesta;
     }
     
     public long getCedula(){
@@ -135,5 +138,13 @@ public class persona {
     
     public void setHora(String hora){
         this.hora = hora;
+    }
+
+    public boolean isEncuesta() { //parece que aca es is por lo que es un boolean
+        return encuesta;
+    }
+
+    public void setEncuesta(boolean encuesta) {
+        this.encuesta = encuesta;
     }
 }
