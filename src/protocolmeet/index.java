@@ -27,11 +27,8 @@ import javax.swing.JOptionPane;
  */
 
 /*
+2. Programar todo lo de la encuesta
 1. Corregir lo de las tildes en las barra de busqueda
-2. Calendario en qAsistir con registro de fecha y hora
-9. Ventana para encuesta despues de registrar una persona y en qAsistir
-4. Boton de asistencia cuadrarlo con reservar.java
-5. Boton de ver mis reservas cuadrarlo con reserva.java
 6. Hacer la tabla de asistentes en asistencia
 7. Boton de soy colaborador
 8. Ventana para registro de temperatura
