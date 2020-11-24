@@ -1,5 +1,6 @@
 package protocolmeet;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -10,8 +11,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import static protocolmeet.index.base;
+import static protocolmeet.index.base2;
+import static protocolmeet.index.base3;
 
 public class qAsistir extends javax.swing.JFrame {
+
+    static long per;
 
     public qAsistir() {
         initComponents();
@@ -118,7 +123,7 @@ public class qAsistir extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 288, 239, 47));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 239, 47));
 
         jButton2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 51, 51));
@@ -128,7 +133,7 @@ public class qAsistir extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 371, 239, 47));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 239, 47));
 
         getContentPane().add(horasCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 225, 240, -1));
 
@@ -150,6 +155,12 @@ public class qAsistir extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
+            String lugar = "";
+            for (parroquia pr : base2.queryForAll()) {
+                if (iglesia.getText().substring(9, iglesia.getText().length()).equals(pr.getNombreP())) {
+                    lugar = pr.getNombreP();
+                }
+            }
             if (fechaC.getDatoFecha() != null && !horasCombo.getSelectedItem().equals("")) {
                 persona pa = base.queryForId(reservar.cedu);
                 SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/YYYY");
@@ -157,16 +168,24 @@ public class qAsistir extends javax.swing.JFrame {
                 String horas = horasCombo.getSelectedItem().toString();
                 persona pdt = new persona(pa.getCedula(), pa.getNombre(), pa.getPassw(), pa.getCelular(),
                         pa.getCorreo(), pa.getDireccion(), pa.getCiudad(), pa.getTemp(), sdf2.format(dt),
-                        pa.getFechaR(), horas, false/*modificar el boolean segun corresponda*/);
+                        pa.getFechaR(), horas, false);
+                per = pa.getCedula();
+                
+                asistencia a = new asistencia(pa.getNombre(), lugar, sdf2.format(dt), horas);
+                
+                base3.create(a);
                 base.update(pdt);
+                
                 JOptionPane.showMessageDialog(null, "¡" + pdt.getNombre() + " registrado exitosamente!\n\n"
                         + "Día: " + sdf2.format(dt) + "\n\n"
                         + "Hora: " + pdt.getHora() + "\n\n"
-                        + "Lugar: " + iglesia.getText().substring(9, iglesia.getText().length()) + "\n");
+                        + "Lugar: " + lugar + "\n");
                 if (pa.isEncuesta() == false) {
                     int con = JOptionPane.showConfirmDialog(null, "¿Deseas hacer la encuesta covid ahora?", "", JOptionPane.YES_NO_OPTION);
                     if (con == JOptionPane.YES_OPTION) {
-                        //abrir encuesta
+                        encuesta e = new encuesta();
+                        e.setVisible(true);
+                        this.hide();
                     } else {
                         JOptionPane.showMessageDialog(null, "Por tu seguridad y la de los demas, es nuestro deber informarte que es necesario realizar\n"
                                 + "la encuesta covid antes de entrar a la eucaristia, de lo contrario no se te permitirá el ingreso.\n"
