@@ -8,9 +8,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import static protocolmeet.index.base3;
-import static protocolmeet.index.base;
 
 public class misReservas extends javax.swing.JFrame {
 
@@ -32,7 +30,7 @@ public class misReservas extends javax.swing.JFrame {
     public void verBotones() {
         try {
             if (base3.countOf() != 0) {
-                persona a = base.queryForId(reservar.cedu);
+                boolean reserva = false;
                 int largo = 15;
                 int contador = 0;
                 for (asistencia as : base3.queryForAll()) {
@@ -42,19 +40,20 @@ public class misReservas extends javax.swing.JFrame {
                         panelUno.add(botones.botones2[contador]);
                         panelUno.add(botones.label);
                         botones.botones2[contador].addActionListener(new BotonPulsadoListener());
+                        contador++;
+                        largo += 52;//estos deben ir dentro del for para que no se lean cuando no se cumple el if
                     }
-                    contador++;
-                    largo += 52;
                 }
-            } else {
-                label = new JLabel();
-                label.setBounds(10, 15, 720, 100);
-                label.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
-                label.setForeground(Color.red);
-                label.setText("UPS ...\n"
-                        + "Aún no tienes reservas: Elige tu parroquia y reserva un cupo\n"
-                        + " en la Eucaristia a la que quieres asistir.");
-                panelUno.add(label);
+                if (contador < 1) {
+                    label = new JLabel();
+                    label.setBounds(10, 15, 720, 100);
+                    label.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
+                    label.setForeground(Color.red);
+                    label.setText("UPS ...\n"
+                            + "Aún no tienes reservas: Elige tu parroquia y reserva un cupo\n"
+                            + " en la Eucaristia a la que quieres asistir.");
+                    panelUno.add(label);
+                }
             }
         } catch (SQLException ex) {
             Logger.getLogger(misReservas.class.getName()).log(Level.SEVERE, null, ex);
@@ -110,6 +109,7 @@ public class misReservas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        reserv = false;
         index id = new index();
         index.visible = true;
         id.setVisible(true);
@@ -120,31 +120,10 @@ public class misReservas extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            try {
-                id2 = e.getActionCommand().substring(0, 21).trim() + " - " + reservar.nomb;
-                asistencia at = base3.queryForId(id2);
-                String datos = "Información sobre tu reserva\n"
-                        + "Lugar: " + at.getLugar() + "\n"
-                        + "Fecha: " + at.getFecha() + "\n"
-                        + "Hora: " + at.getHour() + "\n\n";
-                if (at.isEncuesta()) {
-                    JOptionPane.showMessageDialog(null, datos);
-                } else {
-                    int c = JOptionPane.showConfirmDialog(null, datos + "¿Deseas realizar la encuesta covid?",
-                            "", JOptionPane.YES_NO_CANCEL_OPTION);
-                    if (c == JOptionPane.YES_OPTION) {
-                        reserv = true;
-                        encuesta ec = new encuesta();
-                        ec.setVisible(true);
-                        hide();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Te recomendamos realizar la encuesta el mismo día de la Eucaristia",
-                                "", JOptionPane.WARNING_MESSAGE);
-                    }
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(misReservas.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            id2 = e.getActionCommand() + " - " + reservar.nomb;//getActionCommand para obtener el texto de culquier boton
+            infoAsistir ia = new infoAsistir();
+            ia.setVisible(true);
+            hide();
         }
     }
 
@@ -175,15 +154,9 @@ public class misReservas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel panelUno;
     // End of variables declaration//GEN-END:variables
 }

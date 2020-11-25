@@ -20,8 +20,6 @@ public class persona {
     private String direccion;
     @DatabaseField
     private String ciudad;
-    /*@DatabaseField
-    private double temp;//quitar*/
     @DatabaseField
     private String fechaR;
 

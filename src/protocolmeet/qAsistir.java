@@ -24,7 +24,7 @@ public class qAsistir extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        
+
         asistir = false;
 
         if (index.buscado == true) {
@@ -181,14 +181,19 @@ public class qAsistir extends javax.swing.JFrame {
                 SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/YYYY");
                 Date dt = fechaC.getDatoFecha();
                 String horas = horasCombo.getSelectedItem().toString();
-                id = horas + " - " + sdf2.format(dt) + " - " + pa.getNombre();//para el id de asistencia, para que sea unico
-                try {
-                    asistencia a = new asistencia(pa.getNombre(), lugar, sdf2.format(dt), horas, false, id);
-                    base3.create(a);
-                } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "Esta fecha ya ha sido registrada");
+                String place = "";
+
+                if (index.buscado == true) {
+                    place = index.nombPq3;
+                } else if (index.buscado == false) {
+                    place = index.nombPq2;
                 }
 
+                id = horas + " - " + sdf2.format(dt) + " - " + place + " - " + pa.getNombre();//para el id de asistencia, para que sea unico
+
+                asistencia a = new asistencia(pa.getNombre(), lugar, sdf2.format(dt), horas, false, 0, id);
+                
+                base3.create(a);
                 base.update(pdt);
 
                 JOptionPane.showMessageDialog(null, "¡" + pdt.getNombre() + " registrado exitosamente!\n\n"
@@ -220,6 +225,7 @@ public class qAsistir extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int s = JOptionPane.showConfirmDialog(null, "¿Estas seguro de cerrar sesión", "", JOptionPane.YES_NO_OPTION);
         if (s == JOptionPane.YES_OPTION) {
+            asistir = false;
             index is = new index();
             index.visible = true;
             index.buscado = false;
@@ -229,7 +235,7 @@ public class qAsistir extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        asistir = true;        
+        asistir = true;
         encuesta en = new encuesta();
         en.setVisible(true);
         this.setVisible(false);

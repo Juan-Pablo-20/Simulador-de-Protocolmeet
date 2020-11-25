@@ -12,7 +12,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import static protocolmeet.index.base;
 import static protocolmeet.index.base2;
-
 public class reservar extends javax.swing.JFrame {
 
     private JLabel jlabel1 = new JLabel();
@@ -96,6 +95,8 @@ public class reservar extends javax.swing.JFrame {
                         ingresoPersona();
                     } else if (index.titleBtn.equals("Asistencia")) {
                         //aqui va para ver asistencia en una parroquia
+                    } else if (index.titleBtn.equals("Soy colaborador")) {
+                        
                     } else if (index.titleBtn.equals("Ver mis reservas")) {
                         verMisReservas();
                     }
@@ -115,7 +116,9 @@ public class reservar extends javax.swing.JFrame {
                         rk.setVisible(true);
                         hide();
                     } else if (index.titleBtn.equals("Asistencia")) {
-                        //aqui va el boton de soy colaborador
+                        colaborador c = new colaborador();
+                        c.setVisible(true);
+                        hide();
                     }
                 }
             }

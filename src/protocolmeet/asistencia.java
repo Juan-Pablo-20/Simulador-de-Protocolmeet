@@ -9,7 +9,7 @@ public class asistencia {
 
     @DatabaseField
     private String name;
-    @DatabaseField
+    @DatabaseField  
     private String lugar;
     @DatabaseField
     private String fecha;
@@ -17,17 +17,20 @@ public class asistencia {
     private String hour;
     @DatabaseField
     private boolean encuesta;
+    @DatabaseField
+    private double temp;
     @DatabaseField (id = true)
     private String codigo;
 
     
-    public asistencia(String name, String lugar, String fecha, String hour, boolean encuesta, String codigo) {
+    public asistencia(String name, String lugar, String fecha, String hour, boolean encuesta, double temp, String codigo) {
         this.name = name;
         this.lugar = lugar;
         this.fecha = fecha;
         this.hour = hour;
-        this.codigo = codigo;
         this.encuesta = encuesta;
+        this.temp = temp;
+        this.codigo = codigo;
     }
     
     public asistencia(){
@@ -79,5 +82,13 @@ public class asistencia {
 
     public void setEncuesta(boolean encuesta) {
         this.encuesta = encuesta;
+    }
+
+    public double getTemp() {
+        return temp;
+    }
+
+    public void setTemp(double temp) {
+        this.temp = temp;
     }
 }

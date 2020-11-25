@@ -16,34 +16,29 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author Juan Pablo Ballesteros Obando Software diseñado para el registro de
- * personas que asisten a eucaristias a las parroquias de Colombia según la
- * hora y la fecha que dessen, ofreciendo una encuesta para conocer el estado de
+ * personas que asisten a eucaristias a las parroquias de Colombia según la hora
+ * y la fecha que dessen, ofreciendo una encuesta para conocer el estado de
  * salud de las personas
  */
 
 /*
-3. Hacer ventana para mis reservas
-4. Hacer base de datos para las reservas
-2. Hacer lo de asistencias cuando se inteta registrar una asistencia ya registrada
-5. Mostrar las asistencias en la ventana mis reservas segun el nombre de la persona
+1. Arreglar lo de verificar nit de parroquias cuando se ingresa un nuevo nit
+2. hacer lo de soy colaborador antes de hacer la lista de asistencia
+3. Hacer la tabla de asistentes en asistencia
+4. hacer lo de la lista a pdf
 1. Corregir lo de las tildes en las barra de busqueda
-6. Hacer la tabla de asistentes en asistencia
-7. Boton de soy colaborador
-8. Ventana para registro de temperatura
-10. Opción de eliminar a una persona con la contraseña de una persona
-11. Agregar una opcion de ya no voy a asistir en qAsistir
+10. Opción de eliminar a una persona con la contraseña de una persona, que la persona misma se elimine
 12. Al final mejorar el diseño de la interfaz gráfica
  */
 public class index extends javax.swing.JFrame {
 
     static Dao<persona, Long> base;
     static Dao<parroquia, Long> base2;
-    static Dao<asistencia, String>base3;
+    static Dao<asistencia, String> base3;
     private int j = 0;
     static boolean visible = true;
     static String nombPq2;
@@ -430,8 +425,8 @@ public class index extends javax.swing.JFrame {
         String archivoDos = "jdbc:h2:./baseParroquia2";
         ConnectionSource conexion2 = new JdbcConnectionSource(archivoDos);
         base2 = DaoManager.createDao(conexion2, parroquia.class);
-        
-        String archivo3 = "jdbc:h2:./baseDatosAsistence";
+
+        String archivo3 = "jdbc:h2:./baseDatosAsist";
         ConnectionSource conexion3 = new JdbcConnectionSource(archivo3);
         base3 = DaoManager.createDao(conexion3, asistencia.class);
 

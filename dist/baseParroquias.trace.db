@@ -1,0 +1,104 @@
+2020-11-24 23:15:52 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PARROQUIA" no encontrada
+Table "PARROQUIA" not found; SQL statement:
+SELECT COUNT(*) FROM `parroquia` [42102-200]
+2020-11-24 23:15:52 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PARROQUIA" no encontrada
+Table "PARROQUIA" not found; SQL statement:
+SELECT * FROM `parroquia`  [42102-200]
+2020-11-24 23:16:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PARROQUIA" no encontrada
+Table "PARROQUIA" not found; SQL statement:
+SELECT * FROM `parroquia`  [42102-200]
+2020-11-24 23:16:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PARROQUIA" no encontrada
+Table "PARROQUIA" not found; SQL statement:
+SELECT * FROM `parroquia`  [42102-200]
+2020-11-24 23:16:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PARROQUIA" no encontrada
+Table "PARROQUIA" not found; SQL statement:
+SELECT * FROM `parroquia`  [42102-200]
+2020-11-24 23:16:01 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PARROQUIA" no encontrada
+Table "PARROQUIA" not found; SQL statement:
+SELECT * FROM `parroquia`  [42102-200]
+2020-11-24 23:16:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PARROQUIA" no encontrada
+Table "PARROQUIA" not found; SQL statement:
+SELECT * FROM `parroquia`  [42102-200]
+2020-11-24 23:16:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PARROQUIA" no encontrada
+Table "PARROQUIA" not found; SQL statement:
+SELECT * FROM `parroquia`  [42102-200]
+2020-11-24 23:16:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PARROQUIA" no encontrada
+Table "PARROQUIA" not found; SQL statement:
+SELECT * FROM `parroquia`  [42102-200]
+2020-11-24 23:16:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PARROQUIA" no encontrada
+Table "PARROQUIA" not found; SQL statement:
+SELECT * FROM `parroquia`  [42102-200]
+2020-11-24 23:16:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PARROQUIA" no encontrada
+Table "PARROQUIA" not found; SQL statement:
+SELECT * FROM `parroquia`  [42102-200]
+2020-11-24 23:16:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PARROQUIA" no encontrada
+Table "PARROQUIA" not found; SQL statement:
+SELECT * FROM `parroquia`  [42102-200]
+2020-11-24 23:16:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PARROQUIA" no encontrada
+Table "PARROQUIA" not found; SQL statement:
+SELECT * FROM `parroquia`  [42102-200]
+2020-11-24 23:16:04 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PARROQUIA" no encontrada
+Table "PARROQUIA" not found; SQL statement:
+SELECT * FROM `parroquia`  [42102-200]
+2020-11-24 23:16:05 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PARROQUIA" no encontrada
+Table "PARROQUIA" not found; SQL statement:
+SELECT * FROM `parroquia`  [42102-200]
+2020-11-24 23:16:05 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PARROQUIA" no encontrada
+Table "PARROQUIA" not found; SQL statement:
+SELECT * FROM `parroquia`  [42102-200]
+2020-11-24 23:16:06 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PARROQUIA" no encontrada
+Table "PARROQUIA" not found; SQL statement:
+SELECT * FROM `parroquia`  [42102-200]
+2020-11-24 23:16:06 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PARROQUIA" no encontrada
+Table "PARROQUIA" not found; SQL statement:
+SELECT * FROM `parroquia`  [42102-200]
+2020-11-24 23:16:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PARROQUIA" no encontrada
+Table "PARROQUIA" not found; SQL statement:
+SELECT COUNT(*) FROM `parroquia` [42102-200]
+2020-11-24 23:16:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PARROQUIA" no encontrada
+Table "PARROQUIA" not found; SQL statement:
+SELECT * FROM `parroquia`  [42102-200]
+2020-11-24 23:16:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PARROQUIA" no encontrada
+Table "PARROQUIA" not found; SQL statement:
+SELECT COUNT(*) FROM `parroquia` [42102-200]
+2020-11-24 23:16:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PARROQUIA" no encontrada
+Table "PARROQUIA" not found; SQL statement:
+SELECT * FROM `parroquia`  [42102-200]
+2020-11-24 23:16:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PARROQUIA" no encontrada
+Table "PARROQUIA" not found; SQL statement:
+SELECT COUNT(*) FROM `parroquia` [42102-200]
+2020-11-24 23:16:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PARROQUIA" no encontrada
+Table "PARROQUIA" not found; SQL statement:
+SELECT * FROM `parroquia`  [42102-200]
+2020-11-24 23:16:32 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PARROQUIA" no encontrada
+Table "PARROQUIA" not found; SQL statement:
+SELECT COUNT(*) FROM `parroquia` [42102-200]
+2020-11-24 23:16:32 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PARROQUIA" no encontrada
+Table "PARROQUIA" not found; SQL statement:
+SELECT * FROM `parroquia`  [42102-200]
