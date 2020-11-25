@@ -124,7 +124,7 @@ public class index extends javax.swing.JFrame {
                 rv.setVisible(true);
                 this.hide();
 
-                /*puse este metodo listen(); aca en index.javay no en el objeto Panel.java para que me funcionen 
+                /*puse este metodo listen(); aca en index.java y no en el objeto Panel.java para que me funcionen 
                 bien todos los botones y para que se cierren y abran las ventanas correspondientes*/
             }
         };
@@ -292,7 +292,7 @@ public class index extends javax.swing.JFrame {
             }
         });
 
-        entrada.setText("Buscar...");
+        entrada.setText("Busca por nombre o ciudad...");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -423,7 +423,7 @@ public class index extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(index.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-        String archivo = "jdbc:h2:./baseDatosPersona";
+        String archivo = "jdbc:h2:./baseDatosPerson";
         ConnectionSource conexion = new JdbcConnectionSource(archivo);
         base = DaoManager.createDao(conexion, persona.class);
 
@@ -431,7 +431,7 @@ public class index extends javax.swing.JFrame {
         ConnectionSource conexion2 = new JdbcConnectionSource(archivoDos);
         base2 = DaoManager.createDao(conexion2, parroquia.class);
         
-        String archivo3 = "jdbc:h2:./baseDatosAsistencia";
+        String archivo3 = "jdbc:h2:./baseDatosAsistence";
         ConnectionSource conexion3 = new JdbcConnectionSource(archivo3);
         base3 = DaoManager.createDao(conexion3, asistencia.class);
 

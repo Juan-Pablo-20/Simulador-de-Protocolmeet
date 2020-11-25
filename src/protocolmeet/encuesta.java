@@ -6,7 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
-import static protocolmeet.index.base;
+import static protocolmeet.index.base3;
 
 public class encuesta extends javax.swing.JFrame {
 
@@ -283,7 +283,7 @@ public class encuesta extends javax.swing.JFrame {
         getContentPane().add(si12, new org.netbeans.lib.awtextra.AbsoluteConstraints(421, 560, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel13.setText("¿Ha tenido dierrea?");
+        jLabel13.setText("¿Ha tenido diarrea?");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(421, 523, 265, -1));
 
         jLabel14.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -338,21 +338,26 @@ public class encuesta extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         label.setText("");
-        index in = new index();
-        index.visible = true;
-        in.setVisible(true);
-        this.hide();
+        if (qAsistir.asistir == true) {
+            index in = new index();
+            index.visible = true;
+            in.setVisible(true);
+            this.hide();
+        } else if (misReservas.reserv == true) {
+            misReservas mi = new misReservas();
+            mi.setVisible(true);
+            hide();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         boolean pasa = false;
         try {
-            if (no1.isSelected() && no2.isSelected() && poca2.isSelected() && no3.isSelected() && no4.isSelected()
-                    && no5.isSelected() && normal5.isSelected() && no6.isSelected() && si7.isSelected() && no8.isSelected()
+            if (no1.isSelected() && no2.isSelected() || poca2.isSelected() && no3.isSelected() && no4.isSelected()
+                    && no5.isSelected() || normal5.isSelected() && no6.isSelected() && si7.isSelected() && no8.isSelected()
                     && no9.isSelected() && si10.isSelected() && no11.isSelected() && no12.isSelected()
                     && no13.isSelected()) {
                 pasa = true;
-                
             } else if (si1.isSelected() || si2.isSelected() || si3.isSelected() || si4.isSelected()
                     || si5.isSelected() || si6.isSelected() || no7.isSelected() || si9.isSelected()
                     || no10.isSelected() || si11.isSelected() || si12.isSelected() || si13.isSelected()) {
@@ -364,14 +369,23 @@ public class encuesta extends javax.swing.JFrame {
                 label.setForeground(Color.red);
                 label.setText("#QuedateEnCasa");
             } else {
-                JOptionPane.showMessageDialog(null, "La salud es importante, asegurate de haber completado todas las preguntas.");
+                JOptionPane.showMessageDialog(null, "La salud es importante, asegurate de haber completado todas las preguntas");
             }
-            
+
             if (pasa == true) {
-                persona pe = base.queryForId(reservar.cedu);
-                pe.setEncuesta(true);
-                label.setForeground(Color.green);
-                label.setText("¡Encuesta completada exitosamente!");
+                if (qAsistir.asistir == true) {
+                    asistencia at = base3.queryForId(qAsistir.id);
+                    at.setEncuesta(true);
+                    base3.update(at);
+                    label.setForeground(Color.green);
+                    label.setText("¡Encuesta completada exitosamente!");
+                } else if (misReservas.reserv == true) {
+                    asistencia asi = base3.queryForId(misReservas.id2);
+                    asi.setEncuesta(true);
+                    base3.update(asi);
+                    label.setForeground(Color.green);
+                    label.setText("¡Encuesta completada exitosamente!");
+                }
             }
         } catch (SQLException ex) {
             Logger.getLogger(encuesta.class.getName()).log(Level.SEVERE, null, ex);

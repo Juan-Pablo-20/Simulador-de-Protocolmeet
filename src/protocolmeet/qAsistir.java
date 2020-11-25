@@ -17,11 +17,15 @@ import static protocolmeet.index.base3;
 public class qAsistir extends javax.swing.JFrame {
 
     static long per;
+    static String id;
+    static boolean asistir;
 
     public qAsistir() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        
+        asistir = false;
 
         if (index.buscado == true) {
             iglesia.setText("HORARIOS " + index.nombPq3.toUpperCase());
@@ -148,7 +152,7 @@ public class qAsistir extends javax.swing.JFrame {
         getContentPane().add(fechaC, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/protocolmeet/fondo.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 470));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -156,33 +160,46 @@ public class qAsistir extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             String lugar = "";
+            if (index.buscado == true) {
+                lugar = index.nombPq3;
+            } else if (index.buscado == false) {
+                lugar = index.nombPq2;
+            }
             for (parroquia pr : base2.queryForAll()) {
                 if (iglesia.getText().substring(9, iglesia.getText().length()).equals(pr.getNombreP())) {
                     lugar = pr.getNombreP();
                 }
             }
             if (fechaC.getDatoFecha() != null && !horasCombo.getSelectedItem().equals("")) {
+
                 persona pa = base.queryForId(reservar.cedu);
+                persona pdt = new persona(pa.getCedula(), pa.getNombre(), pa.getPassw(), pa.getCelular(),
+                        pa.getCorreo(), pa.getDireccion(), pa.getCiudad(),
+                        pa.getFechaR());
+                per = pa.getCedula();
+
                 SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/YYYY");
                 Date dt = fechaC.getDatoFecha();
                 String horas = horasCombo.getSelectedItem().toString();
-                persona pdt = new persona(pa.getCedula(), pa.getNombre(), pa.getPassw(), pa.getCelular(),
-                        pa.getCorreo(), pa.getDireccion(), pa.getCiudad(), pa.getTemp(), sdf2.format(dt),
-                        pa.getFechaR(), horas, false);
-                per = pa.getCedula();
-                
-                asistencia a = new asistencia(pa.getNombre(), lugar, sdf2.format(dt), horas);
-                
-                base3.create(a);
+                id = horas + " - " + sdf2.format(dt) + " - " + pa.getNombre();//para el id de asistencia, para que sea unico
+                try {
+                    asistencia a = new asistencia(pa.getNombre(), lugar, sdf2.format(dt), horas, false, id);
+                    base3.create(a);
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Esta fecha ya ha sido registrada");
+                }
+
                 base.update(pdt);
-                
+
                 JOptionPane.showMessageDialog(null, "¡" + pdt.getNombre() + " registrado exitosamente!\n\n"
                         + "Día: " + sdf2.format(dt) + "\n\n"
-                        + "Hora: " + pdt.getHora() + "\n\n"
+                        + "Hora: " + horas + "\n\n"
                         + "Lugar: " + lugar + "\n");
-                if (pa.isEncuesta() == false) {
+                asistencia s = base3.queryForId(id);
+                if (s.isEncuesta() == false) {
                     int con = JOptionPane.showConfirmDialog(null, "¿Deseas hacer la encuesta covid ahora?", "", JOptionPane.YES_NO_OPTION);
                     if (con == JOptionPane.YES_OPTION) {
+                        asistir = true;
                         encuesta e = new encuesta();
                         e.setVisible(true);
                         this.hide();
@@ -212,6 +229,7 @@ public class qAsistir extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        asistir = true;        
         encuesta en = new encuesta();
         en.setVisible(true);
         this.setVisible(false);

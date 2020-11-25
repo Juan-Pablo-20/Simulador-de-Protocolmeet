@@ -95,9 +95,9 @@ public class reservar extends javax.swing.JFrame {
                     } else if (index.titleBtn.equals("Quiero asistir")) {
                         ingresoPersona();
                     } else if (index.titleBtn.equals("Asistencia")) {
-
+                        //aqui va para ver asistencia en una parroquia
                     } else if (index.titleBtn.equals("Ver mis reservas")) {
-
+                        verMisReservas();
                     }
                 } else if (e.getSource() == boton1) {
                     index in = new index();
@@ -128,26 +128,30 @@ public class reservar extends javax.swing.JFrame {
     private void ingresoPersona() {
         boolean ingreso = false;
         try {
-            cedu = Long.parseLong(field1.getText());
-            try {
-                persona per = base.queryForId(cedu);
-                nomb = per.getNombre();
-                pasw = per.getPassw();
-                if (pasw.equals(field2.getText())) {
-                    ingreso = true;
-                } else {
-                    ingreso = false;
-                    jlabel2.setForeground(Color.red);
-                    JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+            if (!field1.getText().equals("") && !field2.getText().equals("")) {
+                cedu = Long.parseLong(field1.getText());
+                try {
+                    persona per = base.queryForId(cedu);
+                    nomb = per.getNombre();
+                    pasw = per.getPassw();
+                    if (pasw.equals(field2.getText())) {
+                        ingreso = true;
+                    } else {
+                        ingreso = false;
+                        jlabel2.setForeground(Color.red);
+                        JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+                    }
+                    if (ingreso == true) {
+                        qAsistir qa = new qAsistir();
+                        qa.setVisible(true);
+                        jlabel2.setForeground(Color.black);
+                        hide();
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "La persona con cedula " + cedu + " no está registrada");
                 }
-                if (ingreso == true) {
-                    qAsistir qa = new qAsistir();
-                    qa.setVisible(true);
-                    jlabel2.setForeground(Color.black);
-                    hide();
-                }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "La persona con cedula " + cedu + " no está registrada");
+            } else {
+                JOptionPane.showMessageDialog(null, "Completa los espacios para continuar");
             }
         } catch (Exception ex) {
             Logger.getLogger(reservar.class.getName()).log(Level.SEVERE, null, ex);
@@ -184,6 +188,39 @@ public class reservar extends javax.swing.JFrame {
             editarPrq ep = new editarPrq();
             ep.setVisible(true);
             hide();
+        }
+    }
+
+    public void verMisReservas() {
+        boolean ingreso = false;
+        try {
+            if (!field1.getText().equals("") && !field2.getText().equals("")) {
+                cedu = Long.parseLong(field1.getText());
+                try {
+                    persona per = base.queryForId(cedu);
+                    nomb = per.getNombre();
+                    pasw = per.getPassw();
+                    if (pasw.equals(field2.getText())) {
+                        ingreso = true;
+                    } else {
+                        ingreso = false;
+                        jlabel2.setForeground(Color.red);
+                        JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+                    }
+                    if (ingreso == true) {
+                        misReservas mr = new misReservas();
+                        mr.setVisible(true);
+                        hide();
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "La persona con cedula " + cedu + " no está registrada");
+                    System.out.println("ESTE ES EL ERROR " + e);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Completa los espacios para continuar");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(reservar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

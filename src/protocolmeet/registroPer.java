@@ -165,7 +165,7 @@ public class registroPer extends javax.swing.JFrame {
             fechaR = sdf.format(dateR);
             
             persona pp = new persona(cedula, nombre, password, celular, correo, 
-                    direcc, ciudad, 0, "Sin fecha", fechaR, "Sin hora", false);//los ultimos son temp, fechaM, fechaR, hora, encuesta
+                    direcc, ciudad, fechaR);
             try {
                 base.create(pp);
                 JOptionPane.showMessageDialog(null, "¡Has sido registrado exitosamente!");

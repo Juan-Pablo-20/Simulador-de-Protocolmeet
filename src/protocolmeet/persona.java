@@ -2,7 +2,6 @@ package protocolmeet;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
-import java.util.Date;
 
 @DatabaseTable
 public class persona {
@@ -21,23 +20,17 @@ public class persona {
     private String direccion;
     @DatabaseField
     private String ciudad;
-    @DatabaseField
-    private double temp;
-    @DatabaseField
-    private String fechaM;
+    /*@DatabaseField
+    private double temp;//quitar*/
     @DatabaseField
     private String fechaR;
-    @DatabaseField
-    private String hora;
-    @DatabaseField
-    private boolean encuesta;
 
     public persona() {
     }
 
     public persona(long cedula, String nombre,String passw, long celular, String correo,
-            String direccion, String ciudad, double temp, String fechaM,
-            String fechaR, String hora, boolean encuesta) {
+            String direccion, String ciudad,
+            String fechaR) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.passw = passw;
@@ -45,11 +38,7 @@ public class persona {
         this.correo = correo;
         this.direccion = direccion;
         this.ciudad = ciudad;
-        this.temp = temp;
-        this.fechaM = fechaM;
         this.fechaR = fechaR;
-        this.hora = hora;
-        this.encuesta = encuesta;
     }
     
     public long getCedula(){
@@ -108,22 +97,6 @@ public class persona {
         this.ciudad = ciudad;
     }
     
-    public double getTemp(){
-        return temp;
-    }
-    
-    public void setTemp(double temp){
-        this.temp = temp;
-    }
-    
-    public String getFechaM(){
-        return fechaM;
-    }
-    
-    public void setFechaM(String fechaM){
-        this.fechaM = fechaM;
-    }
-    
     public String getFechaR(){
         return fechaR;
     }
@@ -132,19 +105,4 @@ public class persona {
         this.fechaR = fechaR;
     }
     
-    public String getHora(){
-        return hora;
-    }
-    
-    public void setHora(String hora){
-        this.hora = hora;
-    }
-
-    public boolean isEncuesta() { //parece que aca es is por lo que es un boolean
-        return encuesta;
-    }
-
-    public void setEncuesta(boolean encuesta) {
-        this.encuesta = encuesta;
-    }
 }
