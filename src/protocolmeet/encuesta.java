@@ -347,50 +347,55 @@ public class encuesta extends javax.swing.JFrame {
             misReservas mi = new misReservas();
             mi.setVisible(true);
             hide();
+        } else if(colaborador.colabora == true){
+            colaborador.colabora = false;
+            this.hide();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         boolean pasa = false;
-        try {
-            if (no1.isSelected() && no2.isSelected() || poca2.isSelected() && no3.isSelected() && no4.isSelected()
-                    && no5.isSelected() || normal5.isSelected() && no6.isSelected() && si7.isSelected() && no8.isSelected()
-                    && no9.isSelected() && si10.isSelected() && no11.isSelected() && no12.isSelected()
-                    && no13.isSelected()) {
-                pasa = true;
-            } else if (si1.isSelected() || si2.isSelected() || si3.isSelected() || si4.isSelected()
-                    || si5.isSelected() || si6.isSelected() || no7.isSelected() || si9.isSelected()
-                    || no10.isSelected() || si11.isSelected() || si12.isSelected() || si13.isSelected()) {
-                pasa = false;
-                JOptionPane.showMessageDialog(null, "No podemos aprobar tu ingreso a la eucaristia porque presentas sintomas\n "
-                        + "de covid-19 que pueden afectar la salud de las personas a tu alrededor.\n"
-                        + "Recomendamos quedarte en casa los proximos días y si los sintomas persisten\n"
-                        + " comunicate con tu eps.", "", JOptionPane.WARNING_MESSAGE);
-                label.setForeground(Color.red);
-                label.setText("#QuedateEnCasa");
-            } else {
-                JOptionPane.showMessageDialog(null, "La salud es importante, asegurate de haber completado todas las preguntas");
-            }
+        if (no1.isSelected() && no2.isSelected() || poca2.isSelected() && no3.isSelected() && no4.isSelected()
+                && no5.isSelected() || normal5.isSelected() && no6.isSelected() && si7.isSelected() && no8.isSelected()
+                && no9.isSelected() && si10.isSelected() && no11.isSelected() && no12.isSelected()
+                && no13.isSelected()) {
+            pasa = true;
+        } else if (si1.isSelected() || si2.isSelected() || si3.isSelected() || si4.isSelected()
+                || si5.isSelected() || si6.isSelected() || no7.isSelected() || si9.isSelected()
+                || no10.isSelected() || si11.isSelected() || si12.isSelected() || si13.isSelected()) {
+            pasa = false;
+            JOptionPane.showMessageDialog(null, "No podemos aprobar tu ingreso a la eucaristia porque presentas sintomas\n "
+                    + "de covid-19 que pueden afectar la salud de las personas a tu alrededor.\n"
+                    + "Recomendamos quedarte en casa los proximos días y si los sintomas persisten\n"
+                    + " comunicate con tu eps.", "", JOptionPane.WARNING_MESSAGE);
+            label.setForeground(Color.red);
+            label.setText("#QuedateEnCasa");
+        } else {
+            JOptionPane.showMessageDialog(null, "La salud es importante, asegurate de haber completado todas las preguntas");
+        }
 
-            if (pasa == true) {
-                if (qAsistir.asistir == true) {
-                    asistencia at = base3.queryForId(qAsistir.id);
-                    at.setEncuesta(true);
-                    base3.update(at);
-                    label.setForeground(Color.green);
-                    label.setText("¡Encuesta completada exitosamente!");
-                } else if (misReservas.reserv == true) {
-                    asistencia asi = base3.queryForId(misReservas.id2);
-                    asi.setEncuesta(true);
-                    base3.update(asi);
-                    label.setForeground(Color.green);
-                    label.setText("¡Encuesta completada exitosamente!");
-                }
+        if (pasa == true) {
+            if (qAsistir.asistir == true) {
+                registroEnc(qAsistir.id);
+            } else if (misReservas.reserv == true) {
+                registroEnc(misReservas.id2);
+            } else if (colaborador.colabora == true) {
+                registroEnc(colaborador.id3);
             }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void registroEnc(String id) {
+        try {
+            asistencia asi = base3.queryForId(id);
+            asi.setEncuesta(true);
+            base3.update(asi);
+            label.setForeground(Color.green);
+            label.setText("¡Encuesta completada exitosamente!");
         } catch (SQLException ex) {
             Logger.getLogger(encuesta.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }
 
     public static void main(String args[]) {
 

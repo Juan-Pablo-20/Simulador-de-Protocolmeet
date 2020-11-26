@@ -18,8 +18,7 @@ public class regisParr extends javax.swing.JFrame {
     private int cap;
     private long nit;
     private String pass;
-    
-    
+
     public regisParr() {
         initComponents();
         this.setVisible(false);
@@ -190,39 +189,48 @@ public class regisParr extends javax.swing.JFrame {
         index v = new index();
         v.setVisible(true);
         index.visible = true;
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        diss = cityText.getText();
-        nombre = napaText.getText();
-        parroco = nacoText.getText();
-        city = cityText.getText();
-        tel = Long.parseLong(telText.getText());
-        mail = corrText.getText();
-        dirc = dircText.getText();
-        cap = Integer.parseInt(capText.getText());
-        nit = Long.parseLong(nitText.getText());
-        pass = passText.getText();
-        
-        parroquia p = new parroquia(diss, nombre, parroco,city, tel, mail, dirc, cap, nit, pass);
-        
-        try {
-            base2.create(p);
-            JOptionPane.showMessageDialog(null, "Parroquia registrada exitosamente");
-            dissText1.setText("");
-            napaText.setText("");
-            nacoText.setText("");
-            cityText.setText("");
-            telText.setText("");
-            corrText.setText("");
-            dircText.setText("");
-            capText.setText("");
-            nitText.setText("");
-            passText.setText("");
-        } catch (SQLException ex) {
-            Logger.getLogger(regisParr.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Ups ocurrio un error");
+        if (!cityText.getText().equals("") && !napaText.getText().equals("") && 
+                !nacoText.getText().equals("") && !cityText.getText().equals("") && 
+                !telText.getText().equals("") && !corrText.getText().equals("") &&
+                !dircText.getText().equals("") && !capText.getText().equals("") &&
+                !nitText.getText().equals("") && !passText.getText().equals("")) {
+            
+            diss = cityText.getText();
+            nombre = napaText.getText();
+            parroco = nacoText.getText();
+            city = cityText.getText();
+            tel = Long.parseLong(telText.getText());
+            mail = corrText.getText();
+            dirc = dircText.getText();
+            cap = Integer.parseInt(capText.getText());
+            nit = Long.parseLong(nitText.getText());
+            pass = passText.getText();
+
+            parroquia p = new parroquia(diss, nombre, parroco, city, tel, mail, dirc, cap, nit, pass);
+
+            try {
+                base2.create(p);
+                JOptionPane.showMessageDialog(null, "Parroquia registrada exitosamente");
+                dissText1.setText("");
+                napaText.setText("");
+                nacoText.setText("");
+                cityText.setText("");
+                telText.setText("");
+                corrText.setText("");
+                dircText.setText("");
+                capText.setText("");
+                nitText.setText("");
+                passText.setText("");
+            } catch (SQLException ex) {
+                Logger.getLogger(regisParr.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Ups ocurrio un error");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Completa todos los espacios para continuar");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

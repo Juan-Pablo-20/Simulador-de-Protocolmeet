@@ -21,18 +21,21 @@ public class colaborador extends javax.swing.JFrame {
     static String fecha;
     static String lugar;
     static String id3;
+    static boolean colabora;
 
     public colaborador() {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
 
+        colabora = false;
         ceduLabel.setVisible(false);
         ceduText.setVisible(false);
         nameLabel.setVisible(false);
         tempLabel.setVisible(false);
         tempText.setVisible(false);
         regisBtn.setVisible(false);
+        hacerBtn.setVisible(false);
         labelRegis.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
 
         escuchaCC();
@@ -54,9 +57,10 @@ public class colaborador extends javax.swing.JFrame {
         tempText = new javax.swing.JTextField();
         tempLabel = new javax.swing.JLabel();
         regisBtn = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        hacerBtn = new javax.swing.JButton();
         titulo = new javax.swing.JLabel();
         labelRegis = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -71,7 +75,7 @@ public class colaborador extends javax.swing.JFrame {
 
         horaBox.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         getContentPane().add(horaBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(178, 119, 186, -1));
-        getContentPane().add(calendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(382, 75, 191, 26));
+        getContentPane().add(calendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(403, 75, 200, 26));
 
         jButton1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jButton1.setText("Verificar");
@@ -113,19 +117,29 @@ public class colaborador extends javax.swing.JFrame {
         });
         getContentPane().add(regisBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 186, 43));
 
-        jButton3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton3.setText("Salir");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        hacerBtn.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        hacerBtn.setForeground(new java.awt.Color(0, 153, 0));
+        hacerBtn.setText("Hacer encuesta");
+        hacerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                hacerBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(382, 166, 108, 35));
+        getContentPane().add(hacerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 237, 210, 30));
 
         titulo.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         titulo.setText("Toma de temperatura");
         getContentPane().add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 32, -1, -1));
         getContentPane().add(labelRegis, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, 246, 24));
+
+        jButton4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jButton4.setText("Salir");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 166, 210, 35));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/protocolmeet/fondo.jpg"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 490));
@@ -133,12 +147,11 @@ public class colaborador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        index idx = new index();
-        index.visible = true;
-        idx.setVisible(true);
-        this.hide();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void hacerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hacerBtnActionPerformed
+        colabora = true;
+        encuesta e = new encuesta();
+        e.setVisible(true);
+    }//GEN-LAST:event_hacerBtnActionPerformed
 
     private void escuchaCC() {
         KeyListener kl = new KeyListener() {
@@ -158,6 +171,7 @@ public class colaborador extends javax.swing.JFrame {
                             labelRegis.setText("");
                             nameLabel.setText("");
                             tempText.setText("");
+                            hacerBtn.setVisible(false);
                             persona ps = base.queryForId(Long.parseLong(ceduText.getText()));
                             id3 = hora + " - " + fecha + " - " + lugar + " - " + ps.getNombre();
                             asistencia at = base3.queryForId(id3);
@@ -171,6 +185,7 @@ public class colaborador extends javax.swing.JFrame {
                                     regisBtn.setVisible(true);
                                 } else {
                                     nameLabel.setText("No ha realizado la encuesta");
+                                    hacerBtn.setVisible(true);
                                 }
 
                             }
@@ -237,34 +252,38 @@ public class colaborador extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (!nitText.equals("") && calendar.getDatoFecha() != null && !horaBox.getSelectedItem().toString().equals("")) {
             try {
-                boolean verif = false;
-                parroquia pq = base2.queryForId(Long.parseLong(nitText.getText()));
-                lugar = pq.getNombreP();
-                SimpleDateFormat sd = new SimpleDateFormat("dd/MM/YYYY");
-                for (asistencia asi : base3.queryForAll()) {
-                    if (asi.getFecha().equals(sd.format(calendar.getDatoFecha()))
-                            && asi.getHour().equals(horaBox.getSelectedItem().toString())
-                            && asi.getLugar().equals(pq.getNombreP())) {
-                        verif = true;
+                try {
+                    boolean verif = false;
+                    parroquia pq = base2.queryForId(Long.parseLong(nitText.getText()));
+                    lugar = pq.getNombreP();
+                    SimpleDateFormat sd = new SimpleDateFormat("dd/MM/YYYY");
+                    for (asistencia asi : base3.queryForAll()) {
+                        if (asi.getFecha().equals(sd.format(calendar.getDatoFecha()))
+                                && asi.getHour().equals(horaBox.getSelectedItem().toString())
+                                && asi.getLugar().equals(pq.getNombreP())) {
+                            verif = true;
+                        }
                     }
-                }
-                if (verif == true) {
-                    titulo.setText("Toma de temperatura - " + pq.getNombreP());
-                    hora = horaBox.getSelectedItem().toString();
-                    fecha = sd.format(calendar.getDatoFecha());
+                    if (verif == true) {
+                        titulo.setText("Toma de temperatura - " + pq.getNombreP());
+                        hora = horaBox.getSelectedItem().toString();
+                        fecha = sd.format(calendar.getDatoFecha());
 
-                    nameLabel.setText("");
-                    ceduLabel.setVisible(true);
-                    ceduText.setVisible(true);
-                } else {
-                    nameLabel.setVisible(true);
-                    nameLabel.setText("¡No hay personas regitradas para esta Eucaristia!");
-                    nameLabel.setForeground(Color.red);
-                    ceduLabel.setVisible(false);
-                    ceduText.setVisible(false);
+                        nameLabel.setText("");
+                        ceduLabel.setVisible(true);
+                        ceduText.setVisible(true);
+                    } else {
+                        titulo.setText("Toma de temperatura - " + pq.getNombreP());
+                        nameLabel.setVisible(true);
+                        nameLabel.setText("¡No hay personas regitradas para esta Eucaristia!");
+                        nameLabel.setForeground(Color.red);
+                        ceduLabel.setVisible(false);
+                        ceduText.setVisible(false);
+                    }
+                } catch (SQLException ec) {
+                    System.out.println("EL ERROR ES: " + ec);
                 }
-            } catch (SQLException ex) {
-                Logger.getLogger(colaborador.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Parroquia con NIT " + nitText.getText() + " no registrada");
             }
         } else {
@@ -293,6 +312,13 @@ public class colaborador extends javax.swing.JFrame {
     private void tempTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tempTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tempTextActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        index idx = new index();
+        index.visible = true;
+        idx.setVisible(true);
+        this.hide();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     public static void main(String args[]) {
 
@@ -324,9 +350,10 @@ public class colaborador extends javax.swing.JFrame {
     private rojeru_san.componentes.RSDateChooser calendar;
     private javax.swing.JLabel ceduLabel;
     private javax.swing.JTextField ceduText;
+    private javax.swing.JButton hacerBtn;
     private javax.swing.JComboBox<String> horaBox;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel labelRegis;

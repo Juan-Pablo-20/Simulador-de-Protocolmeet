@@ -26,8 +26,6 @@ import javax.swing.JLabel;
  */
 
 /*
-1. Arreglar lo de verificar nit de parroquias cuando se ingresa un nuevo nit
-2. hacer lo de soy colaborador antes de hacer la lista de asistencia
 3. Hacer la tabla de asistentes en asistencia
 4. hacer lo de la lista a pdf
 1. Corregir lo de las tildes en las barra de busqueda
