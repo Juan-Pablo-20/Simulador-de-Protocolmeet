@@ -1,5 +1,7 @@
 package protocolmeet;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +27,12 @@ public class editarPrq extends javax.swing.JFrame {
         capText.setText(String.valueOf(reservar.capa));
         nitText.setText(String.valueOf(reservar.nitt));
         passText.setText(reservar.psw);
+    }
+    
+    @Override
+    public Image getIconImage(){
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("protocolmeet/ico.png"));
+        return retValue;
     }
 
     @SuppressWarnings("unchecked")
@@ -57,6 +65,7 @@ public class editarPrq extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
 
+        setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N

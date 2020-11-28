@@ -1,5 +1,7 @@
 package protocolmeet;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +26,12 @@ public class regisParr extends javax.swing.JFrame {
         this.setVisible(false);
         this.setLocationRelativeTo(this);
         this.setResizable(false);
+    }
+    
+    @Override
+    public Image getIconImage(){
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("protocolmeet/ico.png"));
+        return retValue;
     }
 
     @SuppressWarnings("unchecked")
@@ -56,6 +64,7 @@ public class regisParr extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
 
         setTitle("Registro de nueva parroquia");
+        setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 20)); // NOI18N
@@ -181,7 +190,7 @@ public class regisParr extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cityTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityTextActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_cityTextActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

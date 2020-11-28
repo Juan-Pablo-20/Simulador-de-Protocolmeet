@@ -1,7 +1,8 @@
 package protocolmeet;
 
-import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
@@ -37,6 +38,12 @@ public class qAsistir extends javax.swing.JFrame {
         horasCombo.addItem("...");
         horasCombo.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
         comboHora();
+    }
+    
+    @Override
+    public Image getIconImage(){
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("protocolmeet/ico.png"));
+        return retValue;
     }
 
     private void comboHora() {
@@ -102,6 +109,7 @@ public class qAsistir extends javax.swing.JFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         iglesia.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N

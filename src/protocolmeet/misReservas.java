@@ -2,6 +2,8 @@ package protocolmeet;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -26,20 +28,25 @@ public class misReservas extends javax.swing.JFrame {
         verBotones();
         jLabel1.setText("Mis reservas - " + reservar.nomb);
     }
+    
+    @Override
+    public Image getIconImage(){
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("protocolmeet/ico.png"));
+        return retValue;
+    }
 
     public void verBotones() {
         try {
             if (base3.countOf() != 0) {
-                boolean reserva = false;
                 int largo = 15;
                 int contador = 0;
                 for (asistencia as : base3.queryForAll()) {
                     if (as.getName().equals(reservar.nomb)) {
                         botones b = new botones();
                         b.mostrarBoton(largo, as.getHour(), as.getFecha(), as.getLugar(), as.isEncuesta());
-                        panelUno.add(botones.botones2[contador]);
+                        panelUno.add(botones.boton);
                         panelUno.add(botones.label);
-                        botones.botones2[contador].addActionListener(new BotonPulsadoListener());
+                        botones.boton.addActionListener(new BotonPulsadoListener());
                         contador++;
                         largo += 52;//estos deben ir dentro del for para que no se lean cuando no se cumple el if
                     }
@@ -70,6 +77,7 @@ public class misReservas extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N

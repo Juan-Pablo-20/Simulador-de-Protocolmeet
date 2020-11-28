@@ -1,8 +1,11 @@
 package protocolmeet;
 
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -12,6 +15,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import static protocolmeet.index.base;
 import static protocolmeet.index.base2;
+
 public class reservar extends javax.swing.JFrame {
 
     private JLabel jlabel1 = new JLabel();
@@ -47,6 +51,12 @@ public class reservar extends javax.swing.JFrame {
         this.setResizable(false);
         this.setLayout(null);
         this.setTitle(index.titleBtn);
+    }
+    
+    @Override
+    public Image getIconImage(){
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("protocolmeet/ico.png"));
+        return retValue;
     }
 
     public void pintar(String texto1, String texto2, String texto3, String texto4, String texto5) {
@@ -94,9 +104,7 @@ public class reservar extends javax.swing.JFrame {
                     } else if (index.titleBtn.equals("Quiero asistir")) {
                         ingresoPersona();
                     } else if (index.titleBtn.equals("Asistencia")) {
-                        //aqui va para ver asistencia en una parroquia
-                    } else if (index.titleBtn.equals("Soy colaborador")) {
-                        
+                        asistencia();
                     } else if (index.titleBtn.equals("Ver mis reservas")) {
                         verMisReservas();
                     }
@@ -115,7 +123,7 @@ public class reservar extends javax.swing.JFrame {
                         registroPer rk = new registroPer();
                         rk.setVisible(true);
                         hide();
-                    } else if (index.titleBtn.equals("Asistencia")) {
+                    } else if (index.titleBtn.equals("Asistencia")) { //para spy colaborador
                         colaborador c = new colaborador();
                         c.setVisible(true);
                         hide();
@@ -227,6 +235,32 @@ public class reservar extends javax.swing.JFrame {
         }
     }
 
+    public void asistencia() {
+        try {
+            boolean ingresa = false;
+            try {
+                nitt = Long.parseLong(field1.getText().trim());
+                parroquia pr = base2.queryForId(nitt);
+                if(pr.getPass().equals(field2.getText().trim()) && pr.getNit() == nitt){
+                    ingresa = true;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Contrseña incorrecta");
+                    jlabel2.setForeground(Color.red);
+                }
+                if(ingresa == true){
+                    tablaAsist ta = new tablaAsist();
+                    ta.setVisible(true);
+                    jlabel2.setForeground(Color.black);
+                    this.hide();
+                }
+            } catch (SQLException ec) {
+
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "No hay parroquias registradas con nit " + nitt);
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -244,6 +278,7 @@ public class reservar extends javax.swing.JFrame {
         jPasswordField2.setText("jPasswordField2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
