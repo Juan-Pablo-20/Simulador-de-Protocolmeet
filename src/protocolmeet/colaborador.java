@@ -139,7 +139,7 @@ public class colaborador extends javax.swing.JFrame {
         titulo.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         titulo.setText("Toma de temperatura");
         getContentPane().add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 32, -1, -1));
-        getContentPane().add(labelRegis, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, 246, 24));
+        getContentPane().add(labelRegis, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, 300, 24));
 
         jButton4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jButton4.setText("Salir");

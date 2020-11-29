@@ -20,7 +20,7 @@ public class botones {
         label.setBounds(390, largo + 5, 270, 27);
         label.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
         if (encuesta == true) {
-            label.setForeground(Color.green);
+            label.setForeground(Color.white);
             label.setText("Encuesta realizada");
         } else {
             label.setForeground(Color.red);

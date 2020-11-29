@@ -28,6 +28,8 @@ import static protocolmeet.index.base3;
 
 public class tablaAsist extends javax.swing.JFrame {
 
+    static int count = 0;
+    
     public tablaAsist() {
         initComponents();
         this.setResizable(false);
@@ -39,12 +41,15 @@ public class tablaAsist extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(tablaAsist.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        imprimeBtn.setEnabled(false);
+        
         comboShema();
         comboCambia();
     }
-    
+
     @Override
-    public java.awt.Image getIconImage(){
+    public java.awt.Image getIconImage() {
         java.awt.Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("protocolmeet/ico.png"));
         return retValue;
     }
@@ -97,38 +102,47 @@ public class tablaAsist extends javax.swing.JFrame {
         ItemListener itml = (ItemEvent e) -> {
             try {
                 if (!calendar2.equals(null) && !comboBox.getSelectedItem().equals(null)) {
-                    int count = 0;
+                    count = 0;
                     String encu = "";
                     SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/YYYY");
                     String date = sdf2.format(calendar2.getDatoFecha());
                     DefaultTableModel dtm = (DefaultTableModel) listas.getModel();
                     dtm.setRowCount(0);
                     try {
-                        for (asistencia asis : base3.queryForAll()) {
-                            if (asis.getFecha().equals(date) && asis.getHour().equals(comboBox.getSelectedItem().toString())) {
+                        for (parroquia par : base2.queryForAll()) {
+                            if (par.getNombreP().equals(jLabel1.getText())) {
+                                for (asistencia asis : base3.queryForAll()) {
+                                    if (asis.getFecha().equals(date) && asis.getHour().equals(comboBox.getSelectedItem().toString())
+                                            && asis.getLugar().equals(par.getNombreP())) {
 
-                                for (persona ps : base.queryForAll()) {
-                                    if (ps.getNombre().equals(asis.getName())) {
-                                        if (asis.isEncuesta()) {
-                                            encu = "Realizada";
-                                        } else {
-                                            encu = "No realizada";
+                                        for (persona ps : base.queryForAll()) {
+                                            if (ps.getNombre().equals(asis.getName())) {
+                                                if (asis.isEncuesta()) {
+                                                    encu = "Realizada";
+                                                } else {
+                                                    encu = "No realizada";
+                                                }
+                                                Object[] objeto = {asis.getName(), ps.getCedula(), asis.getTemp(), encu, ps.getFechaR()};
+                                                dtm.addRow(objeto);
+                                                count++;
+                                            }
                                         }
-                                        Object[] objeto = {asis.getName(), ps.getCedula(), asis.getTemp(), encu, ps.getFechaR()};
-                                        dtm.addRow(objeto);
-                                        count++;
+
                                     }
                                 }
                             }
                         }
+
                         if (dtm.getRowCount() == 0) {
                             advert.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
                             advert.setForeground(Color.red);
                             advert.setText("No hay personas registradas");
+                            imprimeBtn.setEnabled(false);
                         } else {
                             advert.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
-                            advert.setForeground(Color.green);
+                            advert.setForeground(Color.white);
                             advert.setText(count + " personas");
+                            imprimeBtn.setEnabled(true);
                         }
                     } catch (SQLException ex) {
                         System.out.println("ESTE ES EL ERROR: " + ex);
@@ -152,13 +166,15 @@ public class tablaAsist extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         advert = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        imprimeBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
         listas.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         listas.setModel(new javax.swing.table.DefaultTableModel(
@@ -190,19 +206,19 @@ public class tablaAsist extends javax.swing.JFrame {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 600, 275, 39));
         getContentPane().add(advert, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 68, 324, 24));
 
-        jButton2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/protocolmeet/impresora.png"))); // NOI18N
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        imprimeBtn.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        imprimeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/protocolmeet/impresora.png"))); // NOI18N
+        imprimeBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        imprimeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                imprimeBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 570, 120, 90));
+        getContentPane().add(imprimeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 580, 100, 70));
 
-        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel3.setText("Imprimir lista");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 610, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 610, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/protocolmeet/fondo.jpg"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 670));
@@ -217,7 +233,7 @@ public class tablaAsist extends javax.swing.JFrame {
         this.hide();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void imprimeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimeBtnActionPerformed
         Document documento = new Document();
         try {
             String nombrePdf = jLabel1.getText().trim() + ".pdf";
@@ -247,29 +263,35 @@ public class tablaAsist extends javax.swing.JFrame {
                 String encu = "";
                 String parr = "";
                 String horario = "";
-                for (asistencia asis : base3.queryForAll()) {
-                    if (asis.getFecha().equals(date) && asis.getHour().equals(comboBox.getSelectedItem().toString())) {
-                        for (persona ps : base.queryForAll()) {
-                            if (ps.getNombre().equals(asis.getName())) {
-                                parr = asis.getLugar();
-                                horario = asis.getHour();
-                                if (asis.isEncuesta()) {
-                                    encu = "Realizada";
-                                } else {
-                                    encu = "No realizada";
+                for (parroquia par : base2.queryForAll()) {
+                    if (par.getNombreP().equals(jLabel1.getText())) {
+                        for (asistencia asis : base3.queryForAll()) {
+                            if (asis.getFecha().equals(date) && asis.getHour().equals(comboBox.getSelectedItem().toString())
+                                    && asis.getLugar().equals(par.getNombreP())) {
+
+                                for (persona ps : base.queryForAll()) {
+                                    if (ps.getNombre().equals(asis.getName())) {
+                                        parr = asis.getLugar();
+                                        horario = asis.getHour();
+                                        if (asis.isEncuesta()) {
+                                            encu = "Realizada";
+                                        } else {
+                                            encu = "No realizada";
+                                        }
+                                        tabla.addCell(asis.getName());
+                                        tabla.addCell(String.valueOf(ps.getCedula()));
+                                        tabla.addCell(String.valueOf(asis.getTemp()));
+                                        tabla.addCell(encu);
+                                        tabla.addCell(ps.getFechaR());
+                                    }
                                 }
-                                tabla.addCell(asis.getName());
-                                tabla.addCell(String.valueOf(ps.getCedula()));
-                                tabla.addCell(String.valueOf(asis.getTemp()));
-                                tabla.addCell(encu);
-                                tabla.addCell(ps.getFechaR());
+
                             }
                         }
-
                     }
                 }
 
-                parrafo.add("Lista de asistencia " + date + " - " + horario + "\n\n");
+                parrafo.add("Lista de asistencia " + date + " - " + horario + "\n" + parr + "\n\n");
                 documento.open();
                 documento.add(header);
                 documento.add(parrafo);
@@ -283,7 +305,7 @@ public class tablaAsist extends javax.swing.JFrame {
         } catch (Exception e) {
 
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_imprimeBtnActionPerformed
 
     public static void main(String args[]) {
 
@@ -317,8 +339,8 @@ public class tablaAsist extends javax.swing.JFrame {
     private javax.swing.JLabel advert;
     private rojeru_san.componentes.RSDateChooser calendar2;
     private javax.swing.JComboBox<String> comboBox;
+    private javax.swing.JButton imprimeBtn;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -57,9 +57,9 @@ public class index extends javax.swing.JFrame {
         comboListen();
         buscaListen();
     }
-    
+
     @Override
-    public Image getIconImage(){
+    public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("protocolmeet/ico.png"));
         return retValue;
     }
@@ -178,9 +178,14 @@ public class index extends javax.swing.JFrame {
                     buscado = true;
                     panelGrande.removeAll();//para "remover" el contenido del panel
                     panelGrande.setVisible(false);
-                    String igls = combo.getSelectedItem().toString();
-                    nombPq3 = igls;
                     try {
+                        String igls = "";
+                        try{
+                            igls = combo.getSelectedItem().toString();
+                        } catch(Exception ec){
+                            mostrarPanel();
+                        }
+                        nombPq3 = igls;
                         for (parroquia pq : base2.queryForAll()) {
                             if (pq.getNombreP().equals(igls)) {
                                 pb.paneles(0, 0, pq.getNombreP(), pq.getDirecc(), pq.getDiocesis(), pq.getParroco());

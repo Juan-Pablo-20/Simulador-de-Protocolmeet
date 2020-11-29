@@ -37,9 +37,9 @@ public class misReservas extends javax.swing.JFrame {
 
     public void verBotones() {
         try {
+            int contador = 0;
             if (base3.countOf() != 0) {
                 int largo = 15;
-                int contador = 0;
                 for (asistencia as : base3.queryForAll()) {
                     if (as.getName().equals(reservar.nomb)) {
                         botones b = new botones();
@@ -50,7 +50,7 @@ public class misReservas extends javax.swing.JFrame {
                         contador++;
                         largo += 52;//estos deben ir dentro del for para que no se lean cuando no se cumple el if
                     }
-                }
+                } 
                 if (contador < 1) {
                     label = new JLabel();
                     label.setBounds(10, 15, 720, 100);

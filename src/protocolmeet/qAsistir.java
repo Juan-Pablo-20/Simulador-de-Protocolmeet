@@ -1,8 +1,11 @@
 package protocolmeet;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
@@ -39,11 +42,55 @@ public class qAsistir extends javax.swing.JFrame {
         horasCombo.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
         comboHora();
     }
-    
+
     @Override
-    public Image getIconImage(){
+    public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("protocolmeet/ico.png"));
         return retValue;
+    }
+
+    private void cupos() {
+        try {
+            if (!fechaC.equals(null) && !horasCombo.getSelectedItem().equals(null)) {
+                int count = 0;
+                int cup = 0;
+                int cap = 0;
+                SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/YYYY");
+                String date = sdf2.format(fechaC.getDatoFecha());
+
+                try {
+                    String lugar = "";
+                    if (index.buscado == true) {
+                        lugar = index.nombPq3;
+                    } else if (index.buscado == false) {
+                        lugar = index.nombPq2;
+                    }
+                    for (parroquia par : base2.queryForAll()) {
+                        if (par.getNombreP().equals(index.nombPq2)) {
+                            cap = par.getCapc();
+                            for (asistencia asis : base3.queryForAll()) {
+                                if (asis.getFecha().equals(date) && asis.getHour().equals(horasCombo.getSelectedItem().toString())
+                                        && asis.getLugar().equals(par.getNombreP())) {
+                                    count++;
+                                }
+                            }
+                        }
+                    }
+                    cupos.setText("");
+                    cupos.setText(cap - count + " cupos disponibles");
+                    cupos.setForeground(Color.red);
+                    if (count >= cap) {
+                        jButton1.setEnabled(false);
+                    } else {
+                        jButton1.setEnabled(true);
+                    }
+                } catch (SQLException ex) {
+                    System.out.println("ESTE ES EL ERROR: " + ex);
+                }
+            }
+        } catch (Exception ec) {
+            System.out.println("ESTE ES EL ERROR: " + ec);
+        }
     }
 
     private void comboHora() {
@@ -81,13 +128,18 @@ public class qAsistir extends javax.swing.JFrame {
                         horasCombo.addItem("6:00 pm");
                     }
                 }
+                cupos();
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
             }
         };
+        ItemListener itml = (ItemEvent e) -> {
+            cupos();
+        };
         horasCombo.addMouseListener(mouse);
+        horasCombo.addItemListener(itml);
     }
 
     @SuppressWarnings("unchecked")
@@ -104,6 +156,7 @@ public class qAsistir extends javax.swing.JFrame {
         horasCombo = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
         fechaC = new rojeru_san.componentes.RSDateChooser();
+        cupos = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -159,6 +212,9 @@ public class qAsistir extends javax.swing.JFrame {
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 370, 230, 47));
         getContentPane().add(fechaC, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, -1));
 
+        cupos.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        getContentPane().add(cupos, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 230, 30));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/protocolmeet/fondo.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 480));
 
@@ -173,11 +229,7 @@ public class qAsistir extends javax.swing.JFrame {
             } else if (index.buscado == false) {
                 lugar = index.nombPq2;
             }
-            for (parroquia pr : base2.queryForAll()) {
-                if (iglesia.getText().substring(9, iglesia.getText().length()).equals(pr.getNombreP())) {
-                    lugar = pr.getNombreP();
-                }
-            }
+
             if (fechaC.getDatoFecha() != null && !horasCombo.getSelectedItem().equals("")) {
 
                 persona pa = base.queryForId(reservar.cedu);
@@ -199,29 +251,39 @@ public class qAsistir extends javax.swing.JFrame {
 
                 id = horas + " - " + sdf2.format(dt) + " - " + place + " - " + pa.getNombre();//para el id de asistencia, para que sea unico
 
-                asistencia a = new asistencia(pa.getNombre(), lugar, sdf2.format(dt), horas, false, 0, id);
-                
-                base3.create(a);
-                base.update(pdt);
-
-                JOptionPane.showMessageDialog(null, "¡" + pdt.getNombre() + " registrado exitosamente!\n\n"
-                        + "Día: " + sdf2.format(dt) + "\n\n"
-                        + "Hora: " + horas + "\n\n"
-                        + "Lugar: " + lugar + "\n");
-                asistencia s = base3.queryForId(id);
-                if (s.isEncuesta() == false) {
-                    int con = JOptionPane.showConfirmDialog(null, "¿Deseas hacer la encuesta covid ahora?", "", JOptionPane.YES_NO_OPTION);
-                    if (con == JOptionPane.YES_OPTION) {
-                        asistir = true;
-                        encuesta e = new encuesta();
-                        e.setVisible(true);
-                        this.hide();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Por tu seguridad y la de los demas, es nuestro deber informarte que es necesario realizar\n"
-                                + "la encuesta covid antes de entrar a la eucaristia, de lo contrario no se te permitirá el ingreso.\n"
-                                + "Recomendamos realizar la encuesta el mismo día de la eucaristia a traves de este mismo medio.", "", JOptionPane.WARNING_MESSAGE);
+                boolean existe = false;
+                for (asistencia aa : base3.queryForAll()) {
+                    if (aa.getCodigo().equals(id)) {
+                        JOptionPane.showMessageDialog(null, "Ya tienes esta fecha registrada");
+                        existe = true;
                     }
                 }
+
+                if (existe != true) {
+                    asistencia a = new asistencia(pa.getNombre(), lugar, sdf2.format(dt), horas, false, 0, id);
+                    base3.create(a);
+                    base.update(pdt);
+
+                    JOptionPane.showMessageDialog(null, "¡" + pdt.getNombre() + " registrado exitosamente!\n\n"
+                            + "Día: " + sdf2.format(dt) + "\n\n"
+                            + "Hora: " + horas + "\n\n"
+                            + "Lugar: " + lugar + "\n");
+                    asistencia s = base3.queryForId(id);
+                    if (s.isEncuesta() == false) {
+                        int con = JOptionPane.showConfirmDialog(null, "¿Deseas hacer la encuesta covid ahora?", "", JOptionPane.YES_NO_OPTION);
+                        if (con == JOptionPane.YES_OPTION) {
+                            asistir = true;
+                            encuesta e = new encuesta();
+                            e.setVisible(true);
+                            this.hide();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Por tu seguridad y la de los demas, es nuestro deber informarte que es necesario realizar\n"
+                                    + "la encuesta covid antes de entrar a la eucaristia, de lo contrario no se te permitirá el ingreso.\n"
+                                    + "Recomendamos realizar la encuesta el mismo día de la eucaristia a traves de este mismo medio.", "", JOptionPane.WARNING_MESSAGE);
+                        }
+                    }
+                }
+
             } else {
                 JOptionPane.showMessageDialog(null, "¡Selecciona una fecha y una hora!");
             }
@@ -276,6 +338,7 @@ public class qAsistir extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel cupos;
     private rojeru_san.componentes.RSDateChooser fechaC;
     private javax.swing.JComboBox<String> horasCombo;
     private javax.swing.JLabel iglesia;
