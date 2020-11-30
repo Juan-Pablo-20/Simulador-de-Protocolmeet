@@ -25,7 +25,7 @@ public class infoAsistir extends javax.swing.JFrame {
             if(ab.isEncuesta()){
                 hacerEnc.setVisible(false);
                 hizoLabel.setForeground(Color.green);
-                hizoLabel.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
+                hizoLabel.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 17));
                 hizoLabel.setText("Encuesta realizada");
             } else {
                 hacerEnc.setVisible(true);
@@ -61,7 +61,6 @@ public class infoAsistir extends javax.swing.JFrame {
 
         jLabel2.setText("jLabel2");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

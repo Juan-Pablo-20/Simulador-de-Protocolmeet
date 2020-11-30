@@ -277,7 +277,6 @@ public class reservar extends javax.swing.JFrame {
 
         jPasswordField2.setText("jPasswordField2");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

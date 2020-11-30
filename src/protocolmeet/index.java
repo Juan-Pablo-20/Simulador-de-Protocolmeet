@@ -304,7 +304,14 @@ public class index extends javax.swing.JFrame {
             }
         });
 
-        entrada.setText("Busca por nombre o ciudad...");
+        entrada.setToolTipText("");
+        entrada.setName(""); // NOI18N
+        entrada.setOpaque(false);
+        entrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                entradaActionPerformed(evt);
+            }
+        });
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lupa.png"))); // NOI18N
 
@@ -441,6 +448,10 @@ public class index extends javax.swing.JFrame {
         this.hide();
         visible = false;
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void entradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entradaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_entradaActionPerformed
 
     public static void main(String args[]) throws SQLException {
 

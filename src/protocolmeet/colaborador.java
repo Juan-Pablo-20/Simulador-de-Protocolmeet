@@ -71,7 +71,6 @@ public class colaborador extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -80,6 +79,7 @@ public class colaborador extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 78, -1, -1));
 
         nitText.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        nitText.setName(""); // NOI18N
         getContentPane().add(nitText, new org.netbeans.lib.awtextra.AbsoluteConstraints(178, 74, 186, -1));
 
         horaBox.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
