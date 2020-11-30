@@ -74,7 +74,7 @@ public class encuesta extends javax.swing.JFrame {
     
     @Override
     public Image getIconImage(){
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("protocolmeet/ico.png"));
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/ico.png"));
         return retValue;
     }
 
@@ -335,7 +335,7 @@ public class encuesta extends javax.swing.JFrame {
         label.setForeground(new java.awt.Color(0, 153, 0));
         getContentPane().add(label, new org.netbeans.lib.awtextra.AbsoluteConstraints(822, 359, 335, 63));
 
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/protocolmeet/fondo.jpg"))); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.jpg"))); // NOI18N
         getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 650));
 
         pack();

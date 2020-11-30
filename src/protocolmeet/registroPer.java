@@ -31,7 +31,7 @@ public class registroPer extends javax.swing.JFrame {
     
     @Override
     public Image getIconImage(){
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("protocolmeet/ico.png"));
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/ico.png"));
         return retValue;
     }
     
@@ -145,7 +145,7 @@ public class registroPer extends javax.swing.JFrame {
         pswText.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         getContentPane().add(pswText, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 479, 325, -1));
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/protocolmeet/fondo.jpg"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.jpg"))); // NOI18N
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 610));
 
         pack();

@@ -46,11 +46,12 @@ public class tablaAsist extends javax.swing.JFrame {
         
         comboShema();
         comboCambia();
+        
     }
 
     @Override
     public java.awt.Image getIconImage() {
-        java.awt.Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("protocolmeet/ico.png"));
+        java.awt.Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/ico.png"));
         return retValue;
     }
 
@@ -207,7 +208,7 @@ public class tablaAsist extends javax.swing.JFrame {
         getContentPane().add(advert, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 68, 324, 24));
 
         imprimeBtn.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        imprimeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/protocolmeet/impresora.png"))); // NOI18N
+        imprimeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/impresora.png"))); // NOI18N
         imprimeBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         imprimeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,7 +221,7 @@ public class tablaAsist extends javax.swing.JFrame {
         jLabel3.setText("Imprimir lista");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 610, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/protocolmeet/fondo.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.jpg"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 670));
 
         pack();
@@ -240,7 +241,7 @@ public class tablaAsist extends javax.swing.JFrame {
             String ruta = System.getProperty("user.home");
             PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/" + nombrePdf + ".pdf"));
 
-            com.itextpdf.text.Image header = com.itextpdf.text.Image.getInstance("src/protocolmeet/header.png");
+            com.itextpdf.text.Image header = com.itextpdf.text.Image.getInstance("src/imagenes/header.png");
             header.scaleToFit(600, 1000);
             header.setAlignment(Chunk.ALIGN_CENTER);
             header.setBorder(Image.NO_BORDER);//???
