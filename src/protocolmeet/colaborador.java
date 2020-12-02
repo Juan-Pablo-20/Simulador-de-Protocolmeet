@@ -87,7 +87,9 @@ public class colaborador extends javax.swing.JFrame {
         getContentPane().add(calendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(403, 75, 200, 26));
 
         jButton1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton1.setText("Verificar");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/protocolmeet/verifBtnV.png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -118,23 +120,27 @@ public class colaborador extends javax.swing.JFrame {
         getContentPane().add(tempLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, -1, -1));
 
         regisBtn.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        regisBtn.setText("Registrar");
+        regisBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/protocolmeet/regisBtnA.png"))); // NOI18N
+        regisBtn.setBorder(null);
+        regisBtn.setContentAreaFilled(false);
         regisBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 regisBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(regisBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 186, 43));
+        getContentPane().add(regisBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 190, 43));
 
         hacerBtn.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         hacerBtn.setForeground(new java.awt.Color(0, 153, 0));
-        hacerBtn.setText("Hacer encuesta");
+        hacerBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/protocolmeet/hacerEBtn.png"))); // NOI18N
+        hacerBtn.setBorder(null);
+        hacerBtn.setContentAreaFilled(false);
         hacerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hacerBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(hacerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 237, 210, 30));
+        getContentPane().add(hacerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 230, 200, 40));
 
         titulo.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         titulo.setText("Toma de temperatura");
@@ -142,13 +148,15 @@ public class colaborador extends javax.swing.JFrame {
         getContentPane().add(labelRegis, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, 300, 24));
 
         jButton4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton4.setText("Salir");
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salirBtnR.png"))); // NOI18N
+        jButton4.setBorder(null);
+        jButton4.setContentAreaFilled(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 166, 210, 35));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 166, 190, 35));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.jpg"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 490));
@@ -306,11 +314,12 @@ public class colaborador extends javax.swing.JFrame {
             double t = Double.parseDouble(tempText.getText());
             if (t >= 38) {
                 labelRegis.setForeground(Color.red);
-                labelRegis.setText("No puede ingresar por exeder los 38°C");
+                labelRegis.setText("No puede ingresar por exceder los 38°C");
             } else {
                 ast.setTemp(t);
                 base3.update(ast);
-                labelRegis.setForeground(Color.green);
+                labelRegis.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
+                labelRegis.setForeground(Color.white);
                 labelRegis.setText("Registrado");
             }
         } catch (SQLException ex) {
