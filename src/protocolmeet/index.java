@@ -4,6 +4,7 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -49,6 +50,9 @@ public class index extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+
+        entrada.setText("Busca por ciudad o parroquia...");
+        entrada.setForeground(Color.gray);
 
         combo.setBounds(30, 20, 287, 30);
         panelGrande.setOpaque(false);
@@ -263,7 +267,6 @@ public class index extends javax.swing.JFrame {
         entrada.addKeyListener(buscar);
     }
 
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -315,6 +318,14 @@ public class index extends javax.swing.JFrame {
         entrada.setToolTipText("");
         entrada.setName(""); // NOI18N
         entrada.setOpaque(false);
+        entrada.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                entradaMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                entradaMouseExited(evt);
+            }
+        });
         entrada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 entradaActionPerformed(evt);
@@ -367,7 +378,7 @@ public class index extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, 270, 60));
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 540, 270, 60));
 
         jButton7.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salirBtn.png"))); // NOI18N
@@ -387,7 +398,7 @@ public class index extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 540, 270, 60));
+        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1035, 540, 270, 60));
 
         javax.swing.GroupLayout panelGrandeLayout = new javax.swing.GroupLayout(panelGrande);
         panelGrande.setLayout(panelGrandeLayout);
@@ -420,7 +431,7 @@ public class index extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 540, 270, 60));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(375, 540, 270, 60));
 
         jButton3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/asisBtn.png"))); // NOI18N
@@ -440,7 +451,7 @@ public class index extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 540, 270, 60));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(705, 540, 270, 60));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ico.png"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 30, 130, 120));
@@ -490,7 +501,7 @@ public class index extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void entradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entradaActionPerformed
-        
+
     }//GEN-LAST:event_entradaActionPerformed
 
     private void jButton6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseEntered
@@ -532,6 +543,20 @@ public class index extends javax.swing.JFrame {
     private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
         jButton2.setRolloverIcon(new ImageIcon(index.class.getResource("/imagenes/reservasBtn.png")));
     }//GEN-LAST:event_jButton2MouseExited
+
+    private void entradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entradaMouseClicked
+        entrada.setFocusable(true);
+        entrada.setText("");
+        entrada.setForeground(Color.black);
+    }//GEN-LAST:event_entradaMouseClicked
+
+    private void entradaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entradaMouseExited
+        if (entrada.getText().equals("")) {
+            entrada.setText("Busca por ciudad o parroquia...");
+            entrada.setForeground(Color.gray);
+            entrada.setFocusable(false);
+        }
+    }//GEN-LAST:event_entradaMouseExited
 
     public static void main(String args[]) throws SQLException {
 

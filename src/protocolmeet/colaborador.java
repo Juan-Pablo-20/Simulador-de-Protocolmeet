@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import static protocolmeet.index.base;
 import static protocolmeet.index.base2;
@@ -92,6 +93,14 @@ public class colaborador extends javax.swing.JFrame {
         jButton1.setBorder(null);
         jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -126,6 +135,14 @@ public class colaborador extends javax.swing.JFrame {
         regisBtn.setBorder(null);
         regisBtn.setContentAreaFilled(false);
         regisBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        regisBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                regisBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                regisBtnMouseExited(evt);
+            }
+        });
         regisBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 regisBtnActionPerformed(evt);
@@ -139,6 +156,14 @@ public class colaborador extends javax.swing.JFrame {
         hacerBtn.setBorder(null);
         hacerBtn.setContentAreaFilled(false);
         hacerBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        hacerBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                hacerBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                hacerBtnMouseExited(evt);
+            }
+        });
         hacerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hacerBtnActionPerformed(evt);
@@ -156,6 +181,14 @@ public class colaborador extends javax.swing.JFrame {
         jButton4.setBorder(null);
         jButton4.setContentAreaFilled(false);
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton4MouseExited(evt);
+            }
+        });
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -342,6 +375,38 @@ public class colaborador extends javax.swing.JFrame {
         idx.setVisible(true);
         this.hide();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+
+    }//GEN-LAST:event_jButton1MouseExited
+
+    private void jButton4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseEntered
+
+    }//GEN-LAST:event_jButton4MouseEntered
+
+    private void jButton4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseExited
+
+    }//GEN-LAST:event_jButton4MouseExited
+
+    private void hacerBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hacerBtnMouseEntered
+
+    }//GEN-LAST:event_hacerBtnMouseEntered
+
+    private void hacerBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hacerBtnMouseExited
+
+    }//GEN-LAST:event_hacerBtnMouseExited
+
+    private void regisBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regisBtnMouseEntered
+        regisBtn.setIcon(new ImageIcon(colaborador.class.getResource("/imagenes/regisBtnAO.png")));
+    }//GEN-LAST:event_regisBtnMouseEntered
+
+    private void regisBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regisBtnMouseExited
+        regisBtn.setIcon(new ImageIcon(colaborador.class.getResource("/imagenes/regisBtnA.png")));
+    }//GEN-LAST:event_regisBtnMouseExited
 
     public static void main(String args[]) {
 

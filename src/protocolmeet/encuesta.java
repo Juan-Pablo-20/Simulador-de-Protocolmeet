@@ -384,6 +384,7 @@ public class encuesta extends javax.swing.JFrame {
                     + "de covid-19 que pueden afectar la salud de las personas a tu alrededor.\n"
                     + "Recomendamos quedarte en casa los proximos días y si los sintomas persisten\n"
                     + " comunicate con tu eps.", "", JOptionPane.WARNING_MESSAGE);
+            label.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 18));
             label.setForeground(Color.red);
             label.setText("#QuedateEnCasa");
         } else {
@@ -406,8 +407,8 @@ public class encuesta extends javax.swing.JFrame {
             asistencia asi = base3.queryForId(id);
             asi.setEncuesta(true);
             base3.update(asi);
-            label.setForeground(Color.green);
-            label.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
+            label.setForeground(Color.white);
+            label.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 18));
             label.setText("¡Encuesta completada exitosamente!");
         } catch (SQLException ex) {
             Logger.getLogger(encuesta.class.getName()).log(Level.SEVERE, null, ex);
