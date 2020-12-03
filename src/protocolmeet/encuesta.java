@@ -131,6 +131,7 @@ public class encuesta extends javax.swing.JFrame {
         label = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
 
+        setTitle("Realizar encuesta covid");
         setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

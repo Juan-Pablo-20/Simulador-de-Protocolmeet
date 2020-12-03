@@ -219,6 +219,7 @@ public class qAsistir extends javax.swing.JFrame {
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 370, 190, 47));
 
+        fechaC.setToolTipText("Quiero asistir");
         fechaC.setColorBackground(new java.awt.Color(102, 204, 255));
         fechaC.setColorDiaActual(new java.awt.Color(51, 255, 51));
         fechaC.setColorForeground(new java.awt.Color(51, 153, 255));

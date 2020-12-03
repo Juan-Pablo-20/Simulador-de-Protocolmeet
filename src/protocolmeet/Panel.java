@@ -1,7 +1,9 @@
 package protocolmeet;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -58,39 +60,31 @@ public class Panel {
 
         asistir = new JButton();
         asistir.setBounds(50, 215, 200, 40);
-        asistir.setText("¡Quiero asistir!");
-        asistir.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
-        /*asistir.setIcon(new Icon() {
-            @Override
-            public void paintIcon(Component c, Graphics g, int x, int y) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public int getIconWidth() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public int getIconHeight() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        });*/
+        asistir.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        asistir.setIcon(new ImageIcon(Panel.class.getResource("/imagenes/qAsisBtn.png")));
+        asistir.setRolloverIcon(new ImageIcon(Panel.class.getResource("/imagenes/qAsisBtnO.png")));
+        asistir.setText("");
         
         asistir2 = new JButton();
         asistir2.setBounds(50, 215, 200, 40);
-        asistir2.setText("¡Quiero asistir!");
-        asistir2.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
+        asistir2.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        asistir2.setIcon(new ImageIcon(Panel.class.getResource("/imagenes/qAsisBtn.png")));
+        asistir2.setRolloverIcon(new ImageIcon(Panel.class.getResource("/imagenes/qAsisBtnO.png")));
+        asistir2.setText("");
         
         asistir3 = new JButton();
         asistir3.setBounds(50, 215, 200, 40);
-        asistir3.setText("¡Quiero asistir!");
-        asistir3.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
+        asistir3.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        asistir3.setIcon(new ImageIcon(Panel.class.getResource("/imagenes/qAsisBtn.png")));
+        asistir3.setRolloverIcon(new ImageIcon(Panel.class.getResource("/imagenes/qAsisBtnO.png")));
+        asistir3.setText("");
         
         asistir4 = new JButton();
+        asistir4.setCursor(new Cursor(Cursor.HAND_CURSOR));
         asistir4.setBounds(50, 215, 200, 40);
-        asistir4.setText("¡Quiero asistir!");
-        asistir4.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
+        asistir4.setIcon(new ImageIcon(Panel.class.getResource("/imagenes/qAsisBtn.png")));
+        asistir4.setRolloverIcon(new ImageIcon(Panel.class.getResource("/imagenes/qAsisBtnO.png")));
+        asistir4.setText("");
         
         botones[0] = asistir;
         botones[1] = asistir2;

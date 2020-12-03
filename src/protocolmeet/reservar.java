@@ -1,6 +1,7 @@
 package protocolmeet;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -82,16 +83,22 @@ public class reservar extends javax.swing.JFrame {
 
         boton1.setBounds(30, 175, 115, 40);
         boton1.setText(texto3);
+        boton1.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 13));
+        boton1.setForeground(Color.red);
         boton1.setVisible(true);
         jPanel1.add(boton1);
 
         boton2.setBounds(165, 175, 115, 40);
         boton2.setText(texto4);
+        boton2.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 13));
+        boton2.setForeground(Color.green);
         boton2.setVisible(true);
         jPanel1.add(boton2);
 
         boton3.setBounds(30, 235, 250, 30);
         boton3.setText(texto5);
+        boton3.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 13));
+        boton3.setBackground(Color.GRAY);
         boton3.setVisible(true);
         jPanel1.add(boton3);
 

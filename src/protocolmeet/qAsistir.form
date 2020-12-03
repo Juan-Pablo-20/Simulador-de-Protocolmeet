@@ -191,6 +191,7 @@
     </Component>
     <Component class="rojeru_san.componentes.RSDateChooser" name="fechaC">
       <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Quiero asistir"/>
         <Property name="colorBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="cc" red="66" type="rgb"/>
         </Property>

@@ -135,12 +135,12 @@ public class tablaAsist extends javax.swing.JFrame {
                         }
 
                         if (dtm.getRowCount() == 0) {
-                            advert.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
+                            advert.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
                             advert.setForeground(Color.red);
                             advert.setText("No hay personas registradas");
                             imprimeBtn.setEnabled(false);
                         } else {
-                            advert.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
+                            advert.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
                             advert.setForeground(Color.white);
                             advert.setText(count + " personas");
                             imprimeBtn.setEnabled(true);
@@ -171,6 +171,7 @@ public class tablaAsist extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
+        setTitle("Asistencia");
         setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -188,22 +189,29 @@ public class tablaAsist extends javax.swing.JFrame {
         jScrollPane1.setViewportView(listas);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 98, 806, 460));
+
+        calendar2.setColorBackground(new java.awt.Color(0, 153, 255));
+        calendar2.setColorDiaActual(new java.awt.Color(51, 255, 51));
+        calendar2.setColorForeground(new java.awt.Color(51, 153, 255));
         getContentPane().add(calendar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(388, 24, 212, 34));
 
         getContentPane().add(comboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(618, 24, 212, -1));
 
-        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel1.setText("Asistencia");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 24, 332, 34));
 
         jButton1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton1.setText("Salir");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salirBtnR.png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 600, 275, 39));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(645, 600, 190, 39));
         getContentPane().add(advert, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 68, 324, 24));
 
         imprimeBtn.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
