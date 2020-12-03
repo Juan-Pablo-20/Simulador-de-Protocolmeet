@@ -87,9 +87,10 @@ public class colaborador extends javax.swing.JFrame {
         getContentPane().add(calendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(403, 75, 200, 26));
 
         jButton1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/protocolmeet/verifBtnV.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/verifBtnV.png"))); // NOI18N
         jButton1.setBorder(null);
         jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -120,9 +121,10 @@ public class colaborador extends javax.swing.JFrame {
         getContentPane().add(tempLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, -1, -1));
 
         regisBtn.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        regisBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/protocolmeet/regisBtnA.png"))); // NOI18N
+        regisBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/regisBtnA.png"))); // NOI18N
         regisBtn.setBorder(null);
         regisBtn.setContentAreaFilled(false);
+        regisBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         regisBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 regisBtnActionPerformed(evt);
@@ -132,9 +134,10 @@ public class colaborador extends javax.swing.JFrame {
 
         hacerBtn.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         hacerBtn.setForeground(new java.awt.Color(0, 153, 0));
-        hacerBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/protocolmeet/hacerEBtn.png"))); // NOI18N
+        hacerBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/hacerEBtn.png"))); // NOI18N
         hacerBtn.setBorder(null);
         hacerBtn.setContentAreaFilled(false);
+        hacerBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hacerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hacerBtnActionPerformed(evt);
@@ -151,6 +154,7 @@ public class colaborador extends javax.swing.JFrame {
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salirBtnR.png"))); // NOI18N
         jButton4.setBorder(null);
         jButton4.setContentAreaFilled(false);
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);

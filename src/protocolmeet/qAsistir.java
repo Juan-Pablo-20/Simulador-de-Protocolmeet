@@ -181,7 +181,10 @@ public class qAsistir extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 228, -1, -1));
 
         jButton1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton1.setText("Asistir");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/asistBtn.png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -191,7 +194,10 @@ public class qAsistir extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 51, 51));
-        jButton2.setText("Realizar encuesta covid ahora");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/enNowBtn.png"))); // NOI18N
+        jButton2.setBorder(null);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -202,13 +208,21 @@ public class qAsistir extends javax.swing.JFrame {
         getContentPane().add(horasCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 225, 240, -1));
 
         jButton3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton3.setText("Salir");
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/volverBtnA.png"))); // NOI18N
+        jButton3.setBorder(null);
+        jButton3.setContentAreaFilled(false);
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 370, 230, 47));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 370, 190, 47));
+
+        fechaC.setColorBackground(new java.awt.Color(102, 204, 255));
+        fechaC.setColorDiaActual(new java.awt.Color(51, 255, 51));
+        fechaC.setColorForeground(new java.awt.Color(51, 153, 255));
+        fechaC.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         getContentPane().add(fechaC, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, -1));
 
         cupos.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N

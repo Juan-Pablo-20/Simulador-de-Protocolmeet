@@ -86,7 +86,10 @@ public class infoAsistir extends javax.swing.JFrame {
 
         hacerEnc.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         hacerEnc.setForeground(new java.awt.Color(0, 153, 0));
-        hacerEnc.setText("Hacer encuesta covid");
+        hacerEnc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/hencvdBtn.png"))); // NOI18N
+        hacerEnc.setBorder(null);
+        hacerEnc.setContentAreaFilled(false);
+        hacerEnc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hacerEnc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hacerEncActionPerformed(evt);
@@ -96,7 +99,10 @@ public class infoAsistir extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 51, 51));
-        jButton2.setText("No voy a asistir");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nasistBtn.png"))); // NOI18N
+        jButton2.setBorder(null);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -105,7 +111,10 @@ public class infoAsistir extends javax.swing.JFrame {
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 271, 190, 38));
 
         jButton3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton3.setText("Volver");
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/volverBtnA.png"))); // NOI18N
+        jButton3.setBorder(null);
+        jButton3.setContentAreaFilled(false);
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);

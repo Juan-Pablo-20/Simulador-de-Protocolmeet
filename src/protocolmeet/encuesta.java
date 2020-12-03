@@ -1,6 +1,7 @@
 package protocolmeet;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.sql.SQLException;
@@ -312,7 +313,10 @@ public class encuesta extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 153, 0));
-        jButton1.setText("Enviar respuestas");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/enviarBtn.png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -322,7 +326,10 @@ public class encuesta extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 51, 51));
-        jButton2.setText("Volver");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/volverBtnR2.png"))); // NOI18N
+        jButton2.setBorder(null);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -399,6 +406,7 @@ public class encuesta extends javax.swing.JFrame {
             asi.setEncuesta(true);
             base3.update(asi);
             label.setForeground(Color.green);
+            label.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
             label.setText("¡Encuesta completada exitosamente!");
         } catch (SQLException ex) {
             Logger.getLogger(encuesta.class.getName()).log(Level.SEVERE, null, ex);

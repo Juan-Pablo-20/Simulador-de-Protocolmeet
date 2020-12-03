@@ -1,17 +1,14 @@
 package protocolmeet;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
-import java.awt.Graphics;
-import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Panel {
-    static JPanel panel;
+    public static JPanel panel; //Public para que se pueda leer en otros paquetes
     static JComboBox combo = new JComboBox();
     static  JLabel parrq;
     private JLabel lugar;
@@ -21,8 +18,8 @@ public class Panel {
     private JButton asistir2;
     private JButton asistir3;
     private JButton asistir4;
-    static JButton [] botones = new JButton[4];
-    static String [] nombres = new String[4];
+    public static JButton [] botones = new JButton[4];
+    public static String [] nombres = new String[4];
     public Panel(){
         
     }
