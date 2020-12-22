@@ -31,7 +31,6 @@ import javax.swing.JLabel;
 
 /*
 1. Corregir lo de las tildes en las barra de busqueda
-12. Al final mejorar el diseño de la interfaz gráfica
  */
 public class index extends javax.swing.JFrame {
 

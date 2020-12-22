@@ -215,18 +215,18 @@ public class tablaAsist extends javax.swing.JFrame {
         getContentPane().add(advert, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 68, 324, 24));
 
         imprimeBtn.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        imprimeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/impresora.png"))); // NOI18N
+        imprimeBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\Juan Pablo\\Documents\\GitHub\\Simulador-de-Protocolmeet\\src\\imagenes\\impresora2.png")); // NOI18N
         imprimeBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         imprimeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 imprimeBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(imprimeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 580, 100, 70));
+        getContentPane().add(imprimeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 570, 80, 80));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel3.setText("Descargar lista en PDF");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 610, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 600, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.jpg"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 670));

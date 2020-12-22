@@ -32,9 +32,9 @@ public class qAsistir extends javax.swing.JFrame {
         asistir = false;
 
         if (index.buscado == true) {
-            iglesia.setText("HORARIOS " + index.nombPq3.toUpperCase());
+            iglesia.setText(index.nombPq3.toUpperCase());
         } else if (index.buscado == false) {
-            iglesia.setText("HORARIOS " + index.nombPq2.toUpperCase());
+            iglesia.setText(index.nombPq2.toUpperCase());
         }
 
         persona.setText(reservar.nomb);
@@ -53,20 +53,14 @@ public class qAsistir extends javax.swing.JFrame {
         try {
             if (!fechaC.equals(null) && !horasCombo.getSelectedItem().equals(null)) {
                 int count = 0;
-                int cup = 0;
                 int cap = 0;
                 SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/YYYY");
                 String date = sdf2.format(fechaC.getDatoFecha());
 
                 try {
-                    String lugar = "";
-                    if (index.buscado == true) {
-                        lugar = index.nombPq3;
-                    } else if (index.buscado == false) {
-                        lugar = index.nombPq2;
-                    }
+                    String lugar = iglesia.getText();
                     for (parroquia par : base2.queryForAll()) {
-                        if (par.getNombreP().equals(index.nombPq2)) {
+                        if (par.getNombreP().toLowerCase().equals(lugar.toLowerCase())) {
                             cap = par.getCapc();
                             for (asistencia asis : base3.queryForAll()) {
                                 if (asis.getFecha().equals(date) && asis.getHour().equals(horasCombo.getSelectedItem().toString())
@@ -282,6 +276,7 @@ public class qAsistir extends javax.swing.JFrame {
                             + "Día: " + sdf2.format(dt) + "\n\n"
                             + "Hora: " + horas + "\n\n"
                             + "Lugar: " + lugar + "\n");
+                    cupos();
                     asistencia s = base3.queryForId(id);
                     if (s.isEncuesta() == false) {
                         int con = JOptionPane.showConfirmDialog(null, "¿Deseas hacer la encuesta covid ahora?", "", JOptionPane.YES_NO_OPTION);
